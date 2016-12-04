@@ -34,10 +34,10 @@ module Abrizer
 
     def ar_4_3_adaptations
       [
-        {width: 256, height: 192, bitrate: "192k"},
+        {width: 224, height: 168, bitrate: "200k"},
         {width: 448, height: 336, bitrate: "400k"},
         {width: 640, height: 480, bitrate: "800k"},
-        {width: 704, height: 528, bitrate: "1000k"},
+        {width: 720, height: 540, bitrate: "1000k"},
       ]
     end
 
