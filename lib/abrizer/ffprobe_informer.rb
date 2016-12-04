@@ -20,7 +20,28 @@ module Abrizer
     end
 
     def display_aspect_ratio #dar
-      video_stream['display_aspect_ratio']
+      dar = video_stream['display_aspect_ratio']
+      sar = video_stream['sample_aspect_ratio']
+      if dar == "0:1" #&& sar == "0:1"
+        calculate_aspect_ratio_from_wh
+      else
+        dar
+      end
+    end
+
+    def calculate_aspect_ratio_from_wh
+      new_width = width
+      new_height = height
+      w = width
+      h = height
+      while h != 0
+        rem = w % h
+        w = h
+        h = rem
+      end
+      new_height = new_height / w
+      new_width = new_width / w
+      "#{new_width}:#{new_height}"
     end
 
     def video_stream

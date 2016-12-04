@@ -28,26 +28,28 @@ module Abrizer
         puts "Unable to find appropriate adaptation set!"
         exit
       end
-      @adaptations = raw_adaptations.map{|adaptation| Abrizer::Adaptation.new(adaptation)}
+      adaptations = raw_adaptations.map{|adaptation| Abrizer::Adaptation.new(adaptation)}
+      @adaptations = adaptations.select{|adaptation| adaptation.width <= @informer.width}
     end
 
     def ar_4_3_adaptations
       [
-        {width: 704, height: 528, bitrate: "1000k"},
-        {width: 640, height: 480, bitrate: "800k"},
-        {width: 576, height: 432, bitrate: "600k"},
+        {width: 256, height: 192, bitrate: "192k"},
         {width: 448, height: 336, bitrate: "400k"},
-        {width: 256, height: 192, bitrate: "192k"}
+        {width: 640, height: 480, bitrate: "800k"},
+        {width: 704, height: 528, bitrate: "1000k"},
       ]
     end
 
     def ar_16_9_adaptations
+      # Average video bitrate from here: https://bitmovin.com/video-bitrate-streaming-hls-dash/
       [
-        {width: 1280, height: 720, bitrate: ""},
-        {width: 1024, height: 576, bitrate: ""},
-        {width:  768, height: 432, bitrate: ""},
-        {width:  512, height: 288, bitrate: ""},
-        {width:  256, height: 144, bitrate: ""}
+        {width:  192, height: 108, bitrate: "200k"},
+        {width:  426, height: 240, bitrate: "400k"},
+        {width:  640, height: 360, bitrate: "800k"},
+        {width:  854, height: 480, bitrate: "1.2M"},
+        {width: 1280, height: 720, bitrate: "2.4M"},
+        {width: 1920, height: 1080, bitrate: "4.8M"},
       ]
     end
 
