@@ -7,7 +7,7 @@ module Abrizer
 
     def cmd
       %Q| ffmpeg -y -i #{@filename} -vf \
-          scale=#{@adaptation.width}:#{@adaptation.height},setsar=1/1 \
+          scale='#{@adaptation.width}:trunc(#{@adaptation.width}/dar/2)*2',setsar=1 \
           -an -c:v libx264 -x264opts 'keyint=24:min-keyint=24:no-scenecut' \
           -b:v #{@adaptation.bitrate} -maxrate #{@adaptation.bitrate} \
           -bufsize #{@adaptation.bitrate} \
