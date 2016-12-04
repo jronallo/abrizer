@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'abrizer'
+require 'abrizer/cli'
+require 'byebug'
+Abrizer::CLI.start(ARGV)
