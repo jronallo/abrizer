@@ -15,7 +15,7 @@ module Abrizer
     end
 
     def adaptation_filename
-      "#{basename}-#{@adaptation.width}x#{@adaptation.height}-#{@adaptation.bitrate}.mp4"
+      "#{basename}/#{basename}-#{@adaptation.width}x#{@adaptation.height}-#{@adaptation.bitrate}.mp4"
     end
 
     def adaptation_filepath
@@ -28,7 +28,8 @@ module Abrizer
 
     # TODO: don't assume all incoming files will be .mp4
     def basename
-      File.basename @filename, '.mp4'
+      extname = File.extname @filename
+      File.basename @filename, extname
     end
 
   end
