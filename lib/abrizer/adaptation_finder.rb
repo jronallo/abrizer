@@ -44,10 +44,10 @@ module Abrizer
     def ar_16_9_adaptations
       # Average video bitrate from here: https://bitmovin.com/video-bitrate-streaming-hls-dash/
       [
-        {width:  192, height: 108, bitrate: "200k"},
-        {width:  426, height: 240, bitrate: "400k"},
-        {width:  640, height: 360, bitrate: "800k"},
-        {width:  854, height: 480, bitrate: "1.2M"},
+        {width:  256, height: 144, bitrate: "200k"},
+        {width:  512, height: 288, bitrate: "400k"},
+        {width:  768, height: 432, bitrate: "800k"},
+        {width: 1024, height: 576, bitrate: "1.2M"},
         {width: 1280, height: 720, bitrate: "2.4M"},
         {width: 1920, height: 1080, bitrate: "4.8M"},
       ]
