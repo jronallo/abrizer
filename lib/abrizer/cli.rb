@@ -20,5 +20,18 @@ module Abrizer
       puts informer
     end
 
+    desc 'package <dash_or_hls> <filename>', "Package dash or hls from adaptations"
+    def package(dash_or_hls, filename)
+      case dash_or_hls
+      when "dash"
+        Abrizer::PackageDash.new(filename).package
+      when "hls"
+        Abrizer::PackageHls.new(filename).package
+      when "both"
+      else
+        puts "Not a valid packaging value"
+      end
+    end
+
   end
 end
