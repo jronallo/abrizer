@@ -8,6 +8,7 @@ require 'abrizer/adaptation_finder'
 require 'abrizer/ffmpeg_processor'
 require 'abrizer/ffprobe_informer'
 require 'abrizer/processor'
+require 'abrizer/cleaner'
 
 module Abrizer
   # Your code goes here...
