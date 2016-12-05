@@ -7,11 +7,18 @@ module Abrizer
       Abrizer::Processor.process(filename)
       Abrizer::PackageDash.new(filename).package
       Abrizer::PackageHls.new(filename).package
+      Abrizer::Static.new(filename).create
+      Abrizer::Cleaner.new(filename).clean
     end
 
     desc 'process FILE', 'From mezzanine or preservation file create intermediary adaptations'
     def process(filename)
       Abrizer::Processor.process(filename)
+    end
+
+    desc 'static FILE', 'If intermediary adaptations are there create static transmuxed file'
+    def static(filename)
+      Abrizer::Static.new(filename).create
     end
 
     desc 'adaptations FILE', 'Display which adaptations will be created from input file'
@@ -42,13 +49,9 @@ module Abrizer
       end
     end
 
-    desc 'clean <all_or_most> <filename>', 'Clean up intermediary files'
-    def clean(all_or_most, filename)
-      unless %w[ all most ].include? all_or_most
-        puts "Not a valid cleaning mode!"
-        exit
-      end
-      Abrizer::Cleaner.new(filename, all_or_most).clean
+    desc 'clean <filename>', 'Clean up intermediary files'
+    def clean(filename)
+      Abrizer::Cleaner.new(filename).clean
     end
   end
 end
