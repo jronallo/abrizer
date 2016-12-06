@@ -16,6 +16,3 @@
     - make install
     - make distclean
     - hash -r
-
-- name: Symlink | ffmpeg
-  file: state=link src=/usr/local/bin/ffmpeg dest=/usr/bin/ffmpeg

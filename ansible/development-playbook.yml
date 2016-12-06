@@ -15,5 +15,5 @@
         - 2.3.3
     - role: franklinkim.environment
       environment_config:
-        PATH: /usr/local/bento4/bin:/usr/bin
+        PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin
     - role: bento4
