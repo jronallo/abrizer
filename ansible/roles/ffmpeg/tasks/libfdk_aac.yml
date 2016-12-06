@@ -1,0 +1,19 @@
+---
+# AAC audio encoder
+- name: GIT clone | libfdk_aac
+  git: repo=git://git.code.sf.net/p/opencore-amr/fdk-aac
+       dest={{ source_dir }}/libfdk_aac
+       accept_hostkey=yes
+       depth=1
+
+- name: Compile | libfdk_aac
+  shell: "export PATH=/usr/local/bin/:$PATH && {{ item }}"
+  args:
+    chdir: "{{ source_dir }}/libfdk_aac"
+    creates: "{{ bin_dir }}/libfdk_aac"
+  with_items:
+    - autoreconf -fiv
+    - ./configure --prefix={{ build_dir }} --disable-shared
+    - make
+    - make install
+    - make distclean

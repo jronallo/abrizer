@@ -3,13 +3,17 @@
   yum:
     name: epel-release
     state: present
+- name: install git repo
+  yum:
+    name: http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
+    state: present
 - name: install required packages
   yum:
     pkg: "{{item}}"
     state: present
     update_cache: yes
   with_items:
-    - git-core
+    - git
     - curl
     - zlib
     - zlib-devel
@@ -27,3 +31,8 @@
     - bison
     - vim
     - htop
+    - vorbis-tools
+    - gettext-devel
+    - perl-CPAN
+    - perl-devel
+    - zlib-devel

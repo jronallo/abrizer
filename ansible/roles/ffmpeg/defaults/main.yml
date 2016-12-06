@@ -1,0 +1,6 @@
+---
+bin_dir:      "/usr/local/bin"
+lib_dir:      "/usr/local/lib"
+
+build_dir:    "/home/vagrant/ffmpeg_build"
+source_dir:   "/home/vagrant/ffmpeg_sources"

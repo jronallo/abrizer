@@ -1,0 +1,21 @@
+---
+- name: GIT clone | ffmpeg
+  git: repo=git://source.ffmpeg.org/ffmpeg.git
+       dest={{ source_dir }}/ffmpeg
+       accept_hostkey=yes
+       depth=1
+
+- name: Compile | ffmpeg
+  shell: "export PATH=/usr/local/bin/:$PATH && {{ item }}"
+  args:
+    chdir: "{{ source_dir }}/ffmpeg"
+    creates: "{{ bin_dir }}/ffmpeg"
+  with_items:
+    - PKG_CONFIG_PATH="{{ build_dir }}/lib/pkgconfig" ./configure --prefix={{ build_dir }} --extra-cflags="-I{{ build_dir }}/include" --extra-ldflags="-L{{ build_dir }}/lib" --bindir={{ bin_dir }} --pkg-config-flags="--static" --enable-gpl --enable-nonfree --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265
+    - make
+    - make install
+    - make distclean
+    - hash -r
+
+- name: Symlink | ffmpeg
+  file: state=link src=/usr/local/bin/ffmpeg dest=/usr/bin/ffmpeg

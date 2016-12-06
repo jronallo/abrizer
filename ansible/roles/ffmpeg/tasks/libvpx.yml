@@ -1,0 +1,18 @@
+---
+# VP8/VP9 video encoder
+- name: GIT clone | libvpx
+  git: repo=https://chromium.googlesource.com/webm/libvpx.git
+       dest={{ source_dir }}/libvpx
+       accept_hostkey=yes
+       depth=1
+
+- name: Compile | libvpx
+  shell: "export PATH=/usr/local/bin/:$PATH && {{ item }}"
+  args:
+    chdir: "{{ source_dir }}/libvpx"
+    creates: "{{ bin_dir }}/libvpx"
+  with_items:
+    - ./configure --prefix={{ build_dir }} --disable-examples
+    - make
+    - make install
+    - make distclean

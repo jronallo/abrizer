@@ -1,0 +1,80 @@
+---
+- include: ff-libraries.yml
+
+- name: ensure source_dir and build_dir exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ source_dir }}"
+    - "{{ build_dir }}"
+
+- name: stat yasm
+  stat: path=/usr/local/bin/yasm
+  register: yasm_stat
+- name: include yasm
+  include: yasm.yml
+  when: yasm_stat.stat.xusr is not defined or yasm_stat.stat.xusr == False
+
+- name: stat x264
+  stat: path=/usr/local/bin/x264
+  register: x264_stat
+- name: include x264
+  include: x264.yml
+  when: x264_stat.stat.xusr is not defined or x264_stat.stat.xusr == False
+
+- name: stat x265
+  stat: path={{ build_dir }}/lib/libx265.a
+  register: x265_stat
+- name: include x264
+  include: x265.yml
+  when: x265_stat.stat.exists == False
+
+- name: stat libfdk-aac
+  stat: path={{ build_dir }}/lib/libfdk-aac.a
+  register: aac_stat
+- name: include libfdk-aac
+  include: libfdk_aac.yml
+  when: aac_stat.stat.exists == False
+
+- name: stat lame
+  stat: path=/usr/local/bin/lame
+  register: lame_stat
+- name: include lame
+  include: libmp3lame.yml
+  when: lame_stat.stat.xusr is not defined or lame_stat.stat.xusr == False
+
+- name: stat libopus
+  stat: path={{ build_dir }}/lib/libopus.a
+  register: opus_stat
+- name: include libopus
+  include: libopus.yml
+  when: opus_stat.stat.exists == False
+
+- name: stat libogg
+  stat: path={{ build_dir }}/lib/libogg.a
+  register: ogg_stat
+- name: include libogg
+  include: libogg.yml
+  when: ogg_stat.stat.exists == False
+
+- name: stat libvorbis
+  stat: path={{ build_dir }}/lib/libvorbis.a
+  register: vorbis_stat
+- name: include libvorbis
+  include: libvorbis.yml
+  when: vorbis_stat.stat.exists == False
+
+- name: stat libvpx
+  stat: path={{ build_dir }}/lib/libvpx.a
+  register: vpx_stat
+- name: include libvpx
+  include: libvpx.yml
+  when: vpx_stat.stat.exists == False
+
+- name: stat ffmpeg
+  stat: path=/usr/local/bin/ffmpeg
+  register: ffmpeg_stat
+- name: include ffmpeg
+  include: ffmpeg.yml
+  when: ffmpeg_stat.stat.xusr is not defined or ffmpeg_stat.stat.xusr == False
