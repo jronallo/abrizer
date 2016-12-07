@@ -36,3 +36,4 @@
     - perl-CPAN
     - perl-devel
     - zlib-devel
+    - tree
