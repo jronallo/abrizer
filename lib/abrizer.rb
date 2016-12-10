@@ -11,7 +11,7 @@ require 'abrizer/ffmpeg_processor'
 require 'abrizer/ffprobe_informer'
 require 'abrizer/processor'
 require 'abrizer/cleaner'
-require 'abrizer/static'
+require 'abrizer/progressive'
 
 module Abrizer
   # Your code goes here...

@@ -1,10 +1,11 @@
 module Abrizer
-  class Static
+  class Progressive
 
     include FilepathHelpers
 
     def initialize(filename, output_dir=nil)
       @filename = filename
+      @output_directory = output_dir
       find_adaptation
     end
 
@@ -20,12 +21,16 @@ module Abrizer
       @adaptation = sorted[-2]
     end
 
+    def input_video_filepath
+      @adaptation.filepath_fragmented(@filename, output_directory)
+    end
+
     def ffmpeg_cmd
-      "ffmpeg -y -i #{@adaptation.filepath(@filename)} -i #{audio_filepath} -c:v copy -c:a copy #{static_filepath}"
+      "ffmpeg -y -i #{input_video_filepath} -i #{audio_filepath_fragmented} -c:v copy -c:a copy #{static_filepath}"
     end
 
     def static_filepath
-      File.join output_directory, "#{basename}.mp4"
+      File.join output_directory, "progressive.mp4"
     end
 
   end

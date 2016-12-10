@@ -5,10 +5,9 @@ module Abrizer
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams'
     def abr(filepath, output_dir=nil)
       Abrizer::Processor.process(filepath, output_dir)
-      Abrizer::PackageDashBento.new(filepath).package
-      Abrizer::PackageHlsBento.new(filepath).package
-      Abrizer::Static.new(filepath).create
-      Abrizer::Cleaner.new(filepath).clean
+      Abrizer::PackageDashBento.new(filepath, output_dir).package
+      Abrizer::PackageHlsBento.new(filepath, output_dir).package
+      Abrizer::Cleaner.new(filepath, output_dir).clean
     end
 
     desc 'process <filepath> <output_directory>', 'From mezzanine or preservation file create intermediary adaptations'
@@ -16,9 +15,9 @@ module Abrizer
       Abrizer::Processor.process(filepath, output_dir)
     end
 
-    desc 'static <filepath> <output_directory>', 'If intermediary adaptations are there create static transmuxed file'
-    def static(filepath, output_dir=nil)
-      Abrizer::Static.new(filepath).create
+    desc 'progressive <filepath> <output_directory>', 'Create a single progressive download version from the next to largest adaptation and audio. The adaptation and audio file must already exist.'
+    def progressive(filepath, output_dir=nil)
+      Abrizer::Progressive.new(filepath, output_dir).create
     end
 
     desc 'adaptations <filepath>', 'Display which adaptations will be created from input file'
