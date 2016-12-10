@@ -8,19 +8,33 @@ module Abrizer
       @bitrate = bitrate
     end
 
-    def ffmpeg_cmd(input)
-      %Q|ffmpeg -y -i #{input} -vf \
+    def ffmpeg_cmd(input, pass)
+      cmd = %Q|ffmpeg -y -i #{input} -vf \
           scale='#{width}:trunc(#{width}/dar/2)*2',setsar=1 \
-          -an -c:v libx264 -x264opts 'keyint=24:min-keyint=24:no-scenecut' \
-          -b:v #{bitrate} -maxrate #{bitrate} \
-          -bufsize #{bitrate} \
-          #{filepath(input)}|
+          -an -c:v libx264 -x264opts 'keyint=48:min-keyint=48:no-scenecut' \
+          -b:v #{bitrate} -preset faster |
+      if pass == 2
+        cmd += %Q| -maxrate #{bitrate} -bufsize #{bitrate} -pass 2 #{filepath(input)}|
+      else
+        cmd += " -pass 1 -f mp4 /dev/null "
+      end
+      cmd
+    end
+
+    def outfile_basename(input)
+      extname = File.extname input
+      basename = File.basename input, extname
+      "#{basename}/#{basename}-#{width}x#{height}-#{bitrate}"
     end
 
     def filepath(input)
-      extname = File.extname input
-      basename = File.basename input, extname
-      name = "#{basename}/#{basename}-#{width}x#{height}-#{bitrate}.mp4"
+      name = "#{outfile_basename(input)}.mp4"
+      current_directory = File.dirname input
+      File.join current_directory, name
+    end
+
+    def filepath_fragmented(input)
+      name = "#{outfile_basename(input)}-frag.mp4"
       current_directory = File.dirname input
       File.join current_directory, name
     end

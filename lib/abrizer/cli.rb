@@ -5,8 +5,8 @@ module Abrizer
     desc 'abr FILE', 'From file create ABR streams'
     def abr(filename)
       Abrizer::Processor.process(filename)
-      Abrizer::PackageDash.new(filename).package
-      Abrizer::PackageHls.new(filename).package
+      Abrizer::PackageDashBento.new(filename).package
+      Abrizer::PackageHlsBento.new(filename).package
       Abrizer::Static.new(filename).create
       Abrizer::Cleaner.new(filename).clean
     end
@@ -38,12 +38,12 @@ module Abrizer
     def package(dash_or_hls, filename)
       case dash_or_hls
       when "dash"
-        Abrizer::PackageDash.new(filename).package
+        Abrizer::PackageDashBento.new(filename).package
       when "hls"
-        Abrizer::PackageHls.new(filename).package
+        Abrizer::PackageHlsBento.new(filename).package
       when "all"
-        Abrizer::PackageDash.new(filename).package
-        Abrizer::PackageHls.new(filename).package
+        Abrizer::PackageDashBento.new(filename).package
+        Abrizer::PackageHlsBento.new(filename).package
       else
         puts "Not a valid packaging value"
       end

@@ -4,6 +4,10 @@ module Abrizer
       File.join current_directory, "#{basename}/#{basename}-audio.m4a"
     end
 
+    def audio_filepath_fragmented
+      File.join current_directory, "#{basename}/#{basename}-audio-frag.m4a"
+    end
+
     def output_directory
       File.join current_directory, basename
     end

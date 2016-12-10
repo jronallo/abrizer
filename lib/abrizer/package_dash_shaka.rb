@@ -1,5 +1,5 @@
 module Abrizer
-  class PackageDash
+  class PackageDashShaka
 
     include FilepathHelpers
 

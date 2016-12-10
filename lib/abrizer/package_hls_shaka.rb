@@ -1,5 +1,5 @@
 module Abrizer
-  class PackageHls
+  class PackageHlsShaka
 
     include FilepathHelpers
 
