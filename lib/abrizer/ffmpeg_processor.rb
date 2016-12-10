@@ -3,9 +3,9 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename)
+    def initialize(filename, output_dir=nil)
       @filename = filename
-      @output_directory = File.path(@filename)
+      @output_directory = output_dir
       @adaptation_finder = Abrizer::AdaptationFinder.new(@filename)
     end
 
@@ -30,7 +30,7 @@ module Abrizer
     end
 
     def first_pass_cmd
-      first_pass_adaptation.ffmpeg_cmd(@filename, 1)
+      first_pass_adaptation.ffmpeg_cmd(@filename, output_directory, 1)
     end
 
     def process_first_pass
@@ -40,11 +40,11 @@ module Abrizer
 
     def process_second_passes
       @adaptation_finder.adaptations.each do |adaptation|
-        cmd = adaptation.ffmpeg_cmd(@filename, 2)
+        cmd = adaptation.ffmpeg_cmd(@filename, output_directory, 2)
         puts cmd
         `#{cmd}`
-        `mp4fragment #{adaptation.filepath(@filename)} #{adaptation.filepath_fragmented(@filename)}`
-        FileUtils.rm adaptation.filepath(@filename)
+        `mp4fragment #{adaptation.filepath(@filename, output_directory)} #{adaptation.filepath_fragmented(@filename, output_directory)}`
+        FileUtils.rm adaptation.filepath(@filename, output_directory)
       end
     end
 

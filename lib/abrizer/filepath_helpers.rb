@@ -1,22 +1,26 @@
 module Abrizer
   module FilepathHelpers
     def audio_filepath
-      File.join current_directory, "#{basename}/#{basename}-audio.m4a"
+      File.join output_directory, "#{basename}-audio.m4a"
     end
 
     def audio_filepath_fragmented
-      File.join current_directory, "#{basename}/#{basename}-audio-frag.m4a"
+      File.join output_directory, "#{basename}-audio-frag.m4a"
     end
 
     def webvtt_input_filepath
-      File.join current_directory, "#{basename}.vtt"
+      File.join output_directory, "#{basename}.vtt"
     end
 
     def output_directory
-      File.join current_directory, basename
+      if @output_directory
+        @output_directory
+      else
+        File.join filename_directory, basename
+      end
     end
 
-    def current_directory
+    def filename_directory
       File.dirname @filename
     end
 

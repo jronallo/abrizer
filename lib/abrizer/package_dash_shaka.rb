@@ -3,7 +3,7 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename)
+    def initialize(filename, output_dir=nil)
       @filename = filename
       @adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
     end

@@ -1,5 +1,8 @@
 module Abrizer
   class Adaptation
+
+    include FilepathHelpers
+
     attr_reader :width, :height, :bitrate
 
     def initialize(width:, height:, bitrate:)
@@ -8,41 +11,43 @@ module Abrizer
       @bitrate = bitrate
     end
 
-    def ffmpeg_cmd(input, pass)
+    def ffmpeg_cmd(input, output_directory, pass)
       cmd = %Q|ffmpeg -y -i #{input} -vf \
           scale='#{width}:trunc(#{width}/dar/2)*2',setsar=1 \
           -an -c:v libx264 -x264opts 'keyint=48:min-keyint=48:no-scenecut' \
-          -b:v #{bitrate} -preset faster |
+          -b:v #{bitrate}k -preset faster |
       if pass == 2
-        cmd += %Q| -maxrate #{bitrate} -bufsize #{bitrate} -pass 2 #{filepath(input)} |
+        cmd += %Q| -maxrate #{constrained_bitrate}k -bufsize #{bitrate}k -pass 2 #{filepath(input, output_directory)} |
       else
         cmd += " -pass 1 -f mp4 /dev/null "
       end
       cmd
     end
 
+    # TODO: make the constrained bitrate (maxrate) value configurable
+    def constrained_bitrate
+      @bitrate * 1.1
+    end
+
     def outfile_basename(input)
       extname = File.extname input
       basename = File.basename input, extname
-      "#{basename}/#{basename}-#{width}x#{height}-#{bitrate}"
+      "#{basename}-#{width}x#{height}-#{bitrate}"
     end
 
-    def filepath(input)
+    def filepath(input, output_directory)
       name = "#{outfile_basename(input)}.mp4"
-      current_directory = File.dirname input
-      File.join current_directory, name
+      File.join output_directory, name
     end
 
-    def filepath_fragmented(input)
+    def filepath_fragmented(input, output_directory)
       name = "#{outfile_basename(input)}-frag.mp4"
-      current_directory = File.dirname input
-      File.join current_directory, name
+      File.join output_directory, name
     end
 
     def to_s
       "Width: #{@width}, Height: #{@height}, Bitrate: #{@bitrate}"
     end
-
 
   end
 end

@@ -3,8 +3,9 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename)
+    def initialize(filename, output_dir=nil)
       @filename = filename
+      @output_directory = output_dir
       @adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
     end
 
@@ -16,7 +17,7 @@ module Abrizer
 
     def video_inputs
       @adaptations.map do |adaptation|
-        adaptation.filepath_fragmented(@filename)
+        adaptation.filepath_fragmented(@filename, output_directory)
       end
     end
 
