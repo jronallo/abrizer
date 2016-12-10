@@ -14,7 +14,7 @@ module Abrizer
           -an -c:v libx264 -x264opts 'keyint=48:min-keyint=48:no-scenecut' \
           -b:v #{bitrate} -preset faster |
       if pass == 2
-        cmd += %Q| -maxrate #{bitrate} -bufsize #{bitrate} -pass 2 #{filepath(input)}|
+        cmd += %Q| -maxrate #{bitrate} -bufsize #{bitrate} -pass 2 #{filepath(input)} |
       else
         cmd += " -pass 1 -f mp4 /dev/null "
       end

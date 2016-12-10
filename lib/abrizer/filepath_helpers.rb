@@ -8,6 +8,10 @@ module Abrizer
       File.join current_directory, "#{basename}/#{basename}-audio-frag.m4a"
     end
 
+    def webvtt_input_filepath
+      File.join current_directory, "#{basename}.vtt"
+    end
+
     def output_directory
       File.join current_directory, basename
     end

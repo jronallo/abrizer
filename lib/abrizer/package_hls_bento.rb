@@ -21,7 +21,7 @@ module Abrizer
     end
 
     def bento_cmd
-      %Q|mp4hls --output-dir=hls --force --output-single-file #{video_inputs.join(' ')} #{audio_filepath_fragmented}|
+      %Q|mp4hls --output-dir=hls --force --output-single-file #{video_inputs.join(' ')} [+language=eng]#{audio_filepath_fragmented}|
     end
 
   end
