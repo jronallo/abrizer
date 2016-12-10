@@ -21,7 +21,13 @@ module Abrizer
     end
 
     def bento_cmd
-      %Q|mp4hls --output-dir=hls --force --output-single-file #{video_inputs.join(' ')} [+language=eng]#{audio_filepath_fragmented}|
+      cmd = %Q|mp4hls --output-dir=hls --force --output-single-file |
+      if File.exist? webvtt_input_filepath
+        cmd += %Q| [+format=webvtt,+language=eng]#{webvtt_input_filepath} |
+      end
+      cmd += %Q| #{video_inputs.join(' ')} [+language=eng]#{audio_filepath_fragmented} |
+      puts cmd
+      cmd
     end
 
   end
