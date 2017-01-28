@@ -32,6 +32,7 @@ module Abrizer
       @adaptations = adaptations.select{|adaptation| adaptation.width <= @informer.width}
     end
 
+    # The bitrates here are based on H.264 encoding. 
     def ar_4_3_adaptations
       [
         {width: 224, height: 168, bitrate: 200},
@@ -41,6 +42,7 @@ module Abrizer
       ]
     end
 
+    # The bitrates here are based on H.264 encoding.
     def ar_16_9_adaptations
       # Average video bitrate from here: https://bitmovin.com/video-bitrate-streaming-hls-dash/
       [

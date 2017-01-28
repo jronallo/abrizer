@@ -32,11 +32,15 @@ module Abrizer
 
     desc 'mp4 <filepath> <output_directory>', 'Create a single progressive download version as an MP4 from the next to largest adaptation and audio. The adaptation and audio file must already exist.'
     def mp4(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
       Abrizer::ProgressiveMp4.new(filepath, output_dir).create
     end
 
     desc 'vp9 <filepath> <output_directory>', 'Create a single VP9 progressive download version from the original video.'
     def vp9(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
       Abrizer::ProgressiveVp9.new(filepath, output_dir).create
     end
 
