@@ -1,4 +1,5 @@
 require 'json'
+require 'video_sprites'
 require "abrizer/version"
 require 'abrizer/filepath_helpers'
 require 'abrizer/package_dash_shaka'
@@ -13,6 +14,7 @@ require 'abrizer/processor'
 require 'abrizer/cleaner'
 require 'abrizer/progressive_mp4'
 require 'abrizer/progressive_vp9'
+require 'abrizer/sprites'
 
 module Abrizer
   # Your code goes here...

@@ -11,6 +11,7 @@ module Abrizer
       Abrizer::ProgressiveVp9.new(filepath, output_dir).create
       Abrizer::PackageDashBento.new(filepath, output_dir).package
       Abrizer::PackageHlsBento.new(filepath, output_dir).package
+      Abrizer::Sprites.new(filepath, output_dir).create
       Abrizer::Cleaner.new(filepath, output_dir).clean
     end
 
@@ -72,6 +73,13 @@ module Abrizer
       else
         puts "Not a valid packaging value. Try dash or hls."
       end
+    end
+
+    desc 'sprites <filepath> <output_directory>', 'Create image sprites and metadata WebVTT file'
+    def sprites(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
+      Abrizer::Sprites.new(filepath, output_dir).create
     end
 
     desc 'clean <filepath> <output_directory>', 'Clean up intermediary files'
