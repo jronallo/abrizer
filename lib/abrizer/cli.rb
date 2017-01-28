@@ -14,7 +14,7 @@ module Abrizer
       Abrizer::Cleaner.new(filepath, output_dir).clean
     end
 
-    desc 'abr <filepath> <output_directory>', 'From file create ABR streams'
+    desc 'abr <filepath> <output_directory>', 'From file create ABR streams, includes processing MP4 adaptations for packaging'
     def abr(filepath, output_dir=nil)
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
