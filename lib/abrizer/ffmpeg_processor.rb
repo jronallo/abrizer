@@ -15,7 +15,6 @@ module Abrizer
       process_first_pass
       process_second_passes
       process_audio
-      process_progressive_download_version
     end
 
     def make_directory
@@ -39,6 +38,7 @@ module Abrizer
       `#{first_pass_cmd}`
     end
 
+    # Creates a file per adaptation based on aspect ratio and resolution
     def process_second_passes
       @adaptation_finder.adaptations.each do |adaptation|
         cmd = adaptation.ffmpeg_cmd(@filename, output_directory, 2)
@@ -53,10 +53,6 @@ module Abrizer
       `ffmpeg -y -i #{@filename} -c:a libfdk_aac -b:a 128k -vn #{audio_filepath}`
       `mp4fragment #{audio_filepath} #{audio_filepath_fragmented}`
       FileUtils.rm audio_filepath
-    end
-
-    def process_progressive_download_version
-      Abrizer::Progressive.new(@filename, output_directory).create
     end
 
   end

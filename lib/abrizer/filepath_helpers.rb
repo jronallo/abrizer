@@ -9,7 +9,7 @@ module Abrizer
     end
 
     def webvtt_input_filepath
-      File.join output_directory, "#{basename}.vtt"
+      File.join filename_directory, "#{basename}.vtt"
     end
 
     def output_directory

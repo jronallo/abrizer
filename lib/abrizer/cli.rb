@@ -4,7 +4,10 @@ module Abrizer
 
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams'
     def abr(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
       Abrizer::Processor.process(filepath, output_dir)
+      Abrizer::ProgressiveMp4.new(filepath, output_dir).create
       Abrizer::PackageDashBento.new(filepath, output_dir).package
       Abrizer::PackageHlsBento.new(filepath, output_dir).package
       Abrizer::Cleaner.new(filepath, output_dir).clean
@@ -12,12 +15,19 @@ module Abrizer
 
     desc 'process <filepath> <output_directory>', 'From mezzanine or preservation file create intermediary adaptations'
     def process(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
       Abrizer::Processor.process(filepath, output_dir)
     end
 
-    desc 'progressive <filepath> <output_directory>', 'Create a single progressive download version from the next to largest adaptation and audio. The adaptation and audio file must already exist.'
-    def progressive(filepath, output_dir=nil)
-      Abrizer::Progressive.new(filepath, output_dir).create
+    desc 'mp4 <filepath> <output_directory>', 'Create a single progressive download version as an MP4 from the next to largest adaptation and audio. The adaptation and audio file must already exist.'
+    def mp4(filepath, output_dir=nil)
+      Abrizer::ProgressiveMp4.new(filepath, output_dir).create
+    end
+
+    desc 'vp9 <filepath> <output_directory>', 'Create a single VP9 progressive download version from the original video.'
+    def vp9(filepath, output_dir=nil)
+      Abrizer::ProgressiveVp9.new(filepath, output_dir).create
     end
 
     desc 'adaptations <filepath>', 'Display which adaptations will be created from input file'
@@ -35,6 +45,8 @@ module Abrizer
 
     desc 'package <dash_or_hls> <filepath> <output_directory>', "Package dash or hls from adaptations"
     def package(dash_or_hls, filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
       case dash_or_hls
       when "dash"
         Abrizer::PackageDashBento.new(filepath, output_dir).package
