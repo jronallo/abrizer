@@ -24,14 +24,15 @@ Or install it yourself as:
 
 Abrizer knows how to run various processes which can take a master or mezzanine video and create DASH and HLS streaming formats along with other derivatives like a fallback MP4 and . The gem is opinionated about what formats to create. The intention is to provide a relatively complete solution for delivering video.
 
-Each step must be run after the other. Each has preconditions in order for subsequent steps to run and later cleaning steps will remove intermediate and log files. You can see the latest full set of processes Abrizer can run by looking in `lib/abrizer/cli.rb` for the `abr` method. The current order is:
+Some steps must be run after others. Each has preconditions in order for subsequent steps to run and later cleaning steps will remove intermediate and log files. You can see the latest full set of processes Abrizer can run by looking in `lib/abrizer/cli.rb` for the `abr` method. The current order is:
 
 - `process`: Process the adaptations that will be repackaged into ABR formats
-- `mp4`: Process a progressive download MP4
-- `package dash`: Package DASH (and HLS with fMP4)
-- `package hls`: Package HLS (TS)
+- `package dash`: Package DASH (and HLS with fMP4) using output of `process`
+- `package hls`: Package HLS (TS) using output of `process`
+- `mp4`: Process a progressive download MP4 from original
+- `vp9`: Process a progressive download WebM VP9 from original
 - *Create video sprites and metadata WebVTT file (optionally retaining all the frame images for later picking a poster image)*
-- Clean out the intermedia and log files
+- `clean`: Clean out the intermediate and log files including MP4 files used for packaging but not required for delivery
 
 Every command requires the path to the original video file and an output directory.
 

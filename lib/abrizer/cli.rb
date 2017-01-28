@@ -2,15 +2,25 @@ require 'thor'
 module Abrizer
   class CLI < Thor
 
+    desc 'all <filepath> <output_directory>', 'Runn all processes including creating ABR streams, progressive download versions, and images and video sprites'
+    def all(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
+      Abrizer::Processor.process(filepath, output_dir)
+      Abrizer::ProgressiveMp4.new(filepath, output_dir).create
+      Abrizer::ProgressiveVp9.new(filepath, output_dir).create
+      Abrizer::PackageDashBento.new(filepath, output_dir).package
+      Abrizer::PackageHlsBento.new(filepath, output_dir).package
+      Abrizer::Cleaner.new(filepath, output_dir).clean
+    end
+
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams'
     def abr(filepath, output_dir=nil)
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
       Abrizer::Processor.process(filepath, output_dir)
-      Abrizer::ProgressiveMp4.new(filepath, output_dir).create
       Abrizer::PackageDashBento.new(filepath, output_dir).package
       Abrizer::PackageHlsBento.new(filepath, output_dir).package
-      Abrizer::Cleaner.new(filepath, output_dir).clean
     end
 
     desc 'process <filepath> <output_directory>', 'From mezzanine or preservation file create intermediary adaptations'
