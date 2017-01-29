@@ -9,18 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jason Ronallo"]
   spec.email         = ["jronallo@gmail.com"]
 
-  spec.summary       = %q{Creates MPEG-DASH and HLS streams from a file.}
-  spec.description   = %q{Creates Adaptive BitRate streams.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Creates MPEG-DASH and HLS streams from a video file.}
+  spec.description   = %q{Creates adaptive bitrate streams and other delivery derivatives.}
+  spec.homepage      = "https://github.com/jronallo/abrizer"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"

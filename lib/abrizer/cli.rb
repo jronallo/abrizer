@@ -6,13 +6,7 @@ module Abrizer
     def all(filepath, output_dir=nil)
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
-      Abrizer::Processor.process(filepath, output_dir)
-      Abrizer::ProgressiveMp4.new(filepath, output_dir).create
-      Abrizer::ProgressiveVp9.new(filepath, output_dir).create
-      Abrizer::PackageDashBento.new(filepath, output_dir).package
-      Abrizer::PackageHlsBento.new(filepath, output_dir).package
-      Abrizer::Sprites.new(filepath, output_dir).create
-      Abrizer::Cleaner.new(filepath, output_dir).clean
+      Abrizer::All.new(filepath, output_dir).run
     end
 
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams, includes processing MP4 adaptations for packaging'
