@@ -10,7 +10,8 @@ module Abrizer
         width: 160,
         columns: 4,
         group: 20,
-        gif: false
+        gif: false,
+        keep_images: true
       }
     end
 
