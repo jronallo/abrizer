@@ -1,6 +1,6 @@
 # Abrizer
 
-Abrizer takes a source video and creates various derivatives for delivery including adaptive bitrate formats like DASH and HLS.
+Abrizer takes a source video and creates various derivatives for delivery including adaptive bitrate formats like DASH and HLS. An opinionated work in progress.
 
 ## Requirements
 
