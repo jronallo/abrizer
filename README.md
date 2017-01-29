@@ -26,6 +26,8 @@ Or install it yourself as:
 
     $ gem install abrizer
 
+See [Vagrant](#vagrant) below for one way to install dependencies and run the scripts.
+
 ## Usage
 
 Abrizer knows how to run various processes which can take a master or mezzanine video and create DASH and HLS streaming formats along with other derivatives like a fallback MP4 and WebM. The gem is opinionated about what formats to create and what settings to use. The intention is to provide a relatively complete but simple solution for delivering video over HTTP.
@@ -81,6 +83,10 @@ Take a look at `lib/abrizer/all.rb` for how to use the various classes provided.
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Vagrant
+
+The easiest way to do development on Abrizer or even try out the scripts is to use a Vagrant machine. If you have Vagrant and Virtualbox installed just run `vagrant up` and all dependencies will be installed.
 
 ## Contributing
 
