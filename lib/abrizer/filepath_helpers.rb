@@ -33,5 +33,46 @@ module Abrizer
       extname = File.extname @filename
       File.basename @filename, extname
     end
+
+    def mpd_partial_filepath
+      'fmp4/stream.mpd'
+    end
+
+    def mpd_filepath
+      File.join output_directory, mpd_partial_filepath
+    end
+
+    def hlsts_partial_filepath
+      'hls/master.m3u8'
+    end
+
+    def hlsts_filepath
+      File.join output_directory, hlsts_partial_filepath
+    end
+
+    def mp4_partial_filepath
+      'progressive.mp4'
+    end
+
+    def mp4_filepath
+      File.join output_directory, mp4_partial_filepath
+    end
+
+    def vp9_partial_filepath
+      'progressive-vp9.webm'
+    end
+
+    def vp9_filepath
+      File.join output_directory, vp9_partial_filepath
+    end
+
+    def canvas_partial_filepath
+      'canvas.json'
+    end
+
+    def canvas_filepath
+      File.join output_directory, canvas_partial_filepath
+    end
+
   end
 end

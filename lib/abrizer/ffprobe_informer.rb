@@ -8,7 +8,7 @@ module Abrizer
 
     def get_info
       @json_result = `#{ffmpeg_info_cmd}`
-      @info = JSON.parse @json_result
+      @info = MultiJson.load @json_result
     end
 
     def width
@@ -17,6 +17,10 @@ module Abrizer
 
     def height
       video_stream['height'] if video_stream
+    end
+
+    def duration
+      video_stream['duration'] if video_stream
     end
 
     def display_aspect_ratio #dar

@@ -2,11 +2,11 @@ require 'thor'
 module Abrizer
   class CLI < Thor
 
-    desc 'all <filepath> <output_directory>', 'Runn all processes including creating ABR streams, progressive download versions, and images and video sprites'
-    def all(filepath, output_dir=nil)
+    desc 'all <filepath> <output_directory> <base_url>', 'Run all processes including creating ABR streams, progressive download versions, and images and video sprites.'
+    def all(filepath, output_dir, base_url)
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
-      Abrizer::All.new(filepath, output_dir).run
+      Abrizer::All.new(filepath, output_dir, base_url).run
     end
 
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams, includes processing MP4 adaptations for packaging'
@@ -84,7 +84,7 @@ module Abrizer
     end
 
     desc 'canvas <filepath> <output_directory> <base_url>', 'Creates a IIIF Canvas JSON-LD document as an API into the resources'
-    def canvas(output_directory, base_url)
+    def canvas(filepath, output_directory, base_url)
       filepath = File.expand_path filepath
       output_directory = File.expand_path output_directory
       Abrizer::Canvas.new(filepath, output_directory, base_url).create

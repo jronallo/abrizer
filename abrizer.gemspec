@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler-audit"
 
   spec.add_dependency "thor"
-  spec.add_dependency 'json'
   spec.add_dependency 'video_sprites', '0.2.0'
   spec.add_dependency 'jbuilder'
+  spec.add_dependency 'yajl-ruby'
 end

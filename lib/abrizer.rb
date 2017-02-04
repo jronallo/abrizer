@@ -1,4 +1,7 @@
-require 'json'
+require 'yajl'
+require 'multi_json'
+MultiJson.use :yajl
+MultiJson.dump_options = {pretty: true}
 require 'jbuilder'
 require 'video_sprites'
 require "abrizer/version"
@@ -19,6 +22,8 @@ require 'abrizer/sprites'
 require 'abrizer/captions'
 require 'abrizer/canvas'
 require 'abrizer/all'
+
+
 
 module Abrizer
   # Your code goes here...

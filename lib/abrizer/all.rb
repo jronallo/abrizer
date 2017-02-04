@@ -1,9 +1,10 @@
 module Abrizer
   class All
 
-    def initialize(filename, output_dir=nil)
+    def initialize(filename, output_dir, base_url)
       @filename = filename
       @output_directory = output_dir
+      @base_url = base_url
     end
 
     def run
@@ -14,6 +15,7 @@ module Abrizer
       Abrizer::PackageHlsBento.new(@filename, @output_directory).package
       Abrizer::Captions.new(@filename, @output_directory).copy
       Abrizer::Sprites.new(@filename, @output_directory).create
+      Abrizer::Canvas.new(@filename, @output_directory, @base_url).create
       Abrizer::Cleaner.new(@filename, @output_directory).clean
     end
 

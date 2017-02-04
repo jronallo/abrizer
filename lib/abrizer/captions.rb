@@ -3,6 +3,7 @@ module Abrizer
   # into the destination folder.
   # TODO: This may only be needed if fMP4 derivatives aren't created since
   # captions are copied over.
+  # TODO: Allow for more than one captions/subtitle file to be copied over.
   class Captions
 
     include FilepathHelpers
@@ -17,8 +18,8 @@ module Abrizer
 
     def copy
       vtt_dir_glob.each do |vtt|
-        vtt_basename = File.basename vtt
-        vtt_filename = File.join vtt_output_directory, vtt_basename
+        # vtt_basename = File.basename vtt
+        vtt_filename = File.join vtt_output_directory, 'captions.vtt'
         FileUtils.cp vtt, vtt_filename
       end
     end
@@ -27,8 +28,9 @@ module Abrizer
       Dir.glob vtt_file_glob
     end
 
+    # TODO: actually search for more than one VTT file
     def vtt_file_glob
-      File.join filename_directory, "#{basename}*.vtt"
+      File.join filename_directory, "#{basename}.vtt"
     end
 
     def vtt_output_directory
