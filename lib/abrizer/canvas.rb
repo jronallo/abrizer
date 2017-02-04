@@ -21,6 +21,7 @@ module Abrizer
 
     def create_json
       Jbuilder.encode do |json|
+        json.set! '@context', 'http://iiif.io/api/presentation/3/context.json'
         json.id canvas_id
         json.type "Canvas"
         json.width max_width
