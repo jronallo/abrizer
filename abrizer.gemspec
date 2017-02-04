@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "thor"
   spec.add_dependency 'json'
   spec.add_dependency 'video_sprites', '0.2.0'
+  spec.add_dependency 'jbuilder'
 end

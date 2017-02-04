@@ -20,6 +20,10 @@ module Abrizer
       end
     end
 
+    def output_directory_basename
+      File.basename output_directory
+    end
+
     def filename_directory
       File.dirname @filename
     end

@@ -12,6 +12,7 @@ module Abrizer
       Abrizer::ProgressiveVp9.new(@filename, @output_directory).create
       Abrizer::PackageDashBento.new(@filename, @output_directory).package
       Abrizer::PackageHlsBento.new(@filename, @output_directory).package
+      Abrizer::Captions.new(@filename, @output_directory).copy
       Abrizer::Sprites.new(@filename, @output_directory).create
       Abrizer::Cleaner.new(@filename, @output_directory).clean
     end

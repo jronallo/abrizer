@@ -83,6 +83,13 @@ module Abrizer
       Abrizer::Captions.new(filepath, output_dir).copy
     end
 
+    desc 'canvas <filepath> <output_directory> <base_url>', 'Creates a IIIF Canvas JSON-LD document as an API into the resources'
+    def canvas(output_directory, base_url)
+      filepath = File.expand_path filepath
+      output_directory = File.expand_path output_directory
+      Abrizer::Canvas.new(filepath, output_directory, base_url).create
+    end
+
     desc 'clean <filepath> <output_directory>', 'Clean up intermediary files'
     def clean(filepath, output_dir=nil)
       Abrizer::Cleaner.new(filepath, output_dir).clean

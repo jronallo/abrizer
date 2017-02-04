@@ -1,4 +1,5 @@
 require 'json'
+require 'jbuilder'
 require 'video_sprites'
 require "abrizer/version"
 require 'abrizer/filepath_helpers'
@@ -16,6 +17,7 @@ require 'abrizer/progressive_mp4'
 require 'abrizer/progressive_vp9'
 require 'abrizer/sprites'
 require 'abrizer/captions'
+require 'abrizer/canvas'
 require 'abrizer/all'
 
 module Abrizer
