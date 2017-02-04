@@ -15,6 +15,7 @@ module Abrizer
       Abrizer::PackageHlsBento.new(@filename, @output_directory).package
       Abrizer::Captions.new(@filename, @output_directory).copy
       Abrizer::Sprites.new(@filename, @output_directory).create
+      Abrizer::TemporaryPoster.new(@output_directory).copy
       Abrizer::Canvas.new(@filename, @output_directory, @base_url).create
       Abrizer::Cleaner.new(@filename, @output_directory).clean
     end

@@ -8,7 +8,7 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename, output_dir=nil)
+    def initialize(filename, output_dir)
       @filename = filename
       @output_directory = output_dir
       if vtt_dir_glob.length > 0

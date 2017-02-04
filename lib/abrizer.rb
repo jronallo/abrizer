@@ -21,6 +21,7 @@ require 'abrizer/progressive_vp9'
 require 'abrizer/sprites'
 require 'abrizer/captions'
 require 'abrizer/canvas'
+require 'abrizer/temporary_poster'
 require 'abrizer/all'
 
 

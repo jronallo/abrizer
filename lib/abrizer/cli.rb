@@ -76,6 +76,12 @@ module Abrizer
       Abrizer::Sprites.new(filepath, output_dir).create
     end
 
+    desc 'poster <output_directory>', 'Copy over a temporary poster image based on the sprite images'
+    def poster(output_dir=nil)
+      output_dir = File.expand_path output_dir
+      Abrizer::TemporaryPoster.new(output_dir).copy
+    end
+
     desc 'captions <filepath> <output_directory>', 'Captions and subtitles files with the same basename as the video file and with a .vtt extension are copied over into the output directory'
     def captions(filepath, output_dir=nil)
       filepath = File.expand_path filepath
