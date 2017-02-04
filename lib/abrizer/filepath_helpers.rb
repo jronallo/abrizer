@@ -34,6 +34,10 @@ module Abrizer
       File.basename @filename, extname
     end
 
+    def poster_partial_filepath
+      'poster.jpg'
+    end
+
     def mpd_partial_filepath
       'fmp4/stream.mpd'
     end

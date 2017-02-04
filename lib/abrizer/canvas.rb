@@ -27,29 +27,43 @@ module Abrizer
         json.width max_width
         json.height max_height
         json.duration duration
-        json.media do
-          json.child! do
-            json.type "Annotation"
-            json.motivation 'painting'
-            json.target canvas_id
-            json.body do
-              json.type "Choice"
-              json.items do
-                mpd_item(json)
-                hlsts_item(json)
-                vp9_item(json)
-                mp4_item(json)
-              end
-              json.seeAlso do
-                # TODO: Allow for adding more than one captions/subtitle file
-                captions_seealso(json)
-                sprites_seealso(json)
-              end
+        thumbnail_json(json)
+        media_json(json)
+
+      end
+    end
+
+    def thumbnail_json(json)
+      json.thumbnail do
+        json.id poster_id
+        json.type 'Image'
+        json.format 'image/jpeg'
+      end
+    end
+
+    def media_json(json)
+      json.media do
+        json.child! do
+          json.type "Annotation"
+          json.motivation 'painting'
+          json.target canvas_id
+          json.body do
+            json.type "Choice"
+            json.items do
+              mpd_item(json)
+              hlsts_item(json)
+              vp9_item(json)
+              mp4_item(json)
+            end
+            json.seeAlso do
+              # TODO: Allow for adding more than one captions/subtitle file
+              captions_seealso(json)
+              sprites_seealso(json)
             end
           end
         end
       end
-    end
+    end    
 
     def mpd_item(json)
       if File.exist? mpd_filepath
@@ -123,6 +137,10 @@ module Abrizer
 
     def canvas_id
       File.join media_base_url, canvas_partial_filepath
+    end
+
+    def poster_id
+      File.join media_base_url, poster_partial_filepath
     end
 
     def mpd_id
