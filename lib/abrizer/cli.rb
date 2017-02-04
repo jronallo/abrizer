@@ -76,6 +76,13 @@ module Abrizer
       Abrizer::Sprites.new(filepath, output_dir).create
     end
 
+    desc 'captions <filepath> <output_directory>', 'Captions and subtitles files with the same basename as the video file and with a .vtt extension are copied over into the output directory'
+    def captions(filepath, output_dir=nil)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
+      Abrizer::Captions.new(filepath, output_dir).copy
+    end
+
     desc 'clean <filepath> <output_directory>', 'Clean up intermediary files'
     def clean(filepath, output_dir=nil)
       Abrizer::Cleaner.new(filepath, output_dir).clean

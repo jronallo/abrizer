@@ -15,6 +15,7 @@ require 'abrizer/cleaner'
 require 'abrizer/progressive_mp4'
 require 'abrizer/progressive_vp9'
 require 'abrizer/sprites'
+require 'abrizer/captions'
 require 'abrizer/all'
 
 module Abrizer
