@@ -7,6 +7,7 @@
   gather_facts: yes
   roles:
     - role: basic-setup
+    - role: apache
     - role: franklinkim.environment
       environment_config:
         PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin

@@ -1,0 +1,17 @@
+---
+- name: install apache
+  yum:
+    name: httpd
+    state: present
+- name: remove firewall
+  yum:
+    name: firewalld
+    state: removed
+- name: symlink /var/www/html/v to /vagrant/tmp
+  file:
+    path: /var/www/html/v
+    src: /vagrant/tmp
+    state: link
+    force: yes
+- name: restart httpd
+  service: name=httpd state=restarted

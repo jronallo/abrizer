@@ -5,6 +5,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "boxcutter/centos72"
 
   config.vm.synced_folder '.', '/vagrant' #, type: 'nfs', mount_options: ['nolock', 'rw', 'vers=3', 'tcp', 'actimeo=2']
+  config.vm.network "forwarded_port", guest: 80, host: 8088,
+      auto_correct: true
 
   config.vm.provider "virtualbox" do |vb|
     vb.linked_clone = true

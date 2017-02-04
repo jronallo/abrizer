@@ -88,6 +88,15 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 The easiest way to do development on Abrizer or even try out the scripts is to use a Vagrant machine. If you have Vagrant and Virtualbox installed just run `vagrant up` and all dependencies will be installed.
 
+This includes a web server that can be used for local testing of streams and videos. After `vagrant up` visit http://localhost:8088/v/ to see the contents of the project's `tmp` directory. Within the virtual machine (`vagrant ssh`) you can process a test video with:
+
+```shell
+cd /vagrant
+bundle exec exe/abrizer all test/videos/FullHDCinemaCountdown720p-8sec.mp4 tmp/countdown http://localhost:8088/v
+```
+
+Now visit http://localhost:8088/v/countdown/ to see the files that were created. You can then test any of the videos or streams. 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jronallo/abrizer.

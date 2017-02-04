@@ -37,3 +37,4 @@
     - perl-devel
     - zlib-devel
     - tree
+    - jq
