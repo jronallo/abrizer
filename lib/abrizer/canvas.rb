@@ -126,7 +126,7 @@ module Abrizer
           json.format 'application/webvtt'
           json.label 'English captions'
           json.language 'en'
-          json._comments "How make explicit how whether to use these as captions or subtitles?"
+          json._comments "How make explicit how whether to use these as captions or subtitles, descriptions, or chapters?"
         end
       end
     end
