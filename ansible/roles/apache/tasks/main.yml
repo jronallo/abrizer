@@ -3,6 +3,12 @@
   yum:
     name: httpd
     state: present
+- name: enable cors
+  lineinfile:
+    dest: /etc/httpd/conf/httpd.conf
+    line: 'Header set Access-Control-Allow-Origin "*"'
+    # regexp: '<Directory "/var/www/html">'
+    insertafter: '<Directory "/var/www/html">'
 - name: remove firewall
   yum:
     name: firewalld
