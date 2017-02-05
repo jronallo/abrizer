@@ -29,15 +29,16 @@ module Abrizer
         json.duration duration
         thumbnail_json(json)
         media_json(json)
-
       end
     end
 
     def thumbnail_json(json)
-      json.thumbnail do
-        json.id poster_id
-        json.type 'Image'
-        json.format 'image/jpeg'
+      if File.exist? poster_image_filepath
+        json.thumbnail do
+          json.id poster_id
+          json.type 'Image'
+          json.format 'image/jpeg'
+        end
       end
     end
 
@@ -63,7 +64,7 @@ module Abrizer
           end
         end
       end
-    end    
+    end
 
     def mpd_item(json)
       if File.exist? mpd_filepath
@@ -78,7 +79,7 @@ module Abrizer
     end
 
     def hlsts_item(json)
-      # if File.exist? hlsts_filepath
+      if File.exist? hlsts_filepath
         json.child! do
           json.id hlsts_id
           json.type "Video"
@@ -87,47 +88,57 @@ module Abrizer
           json.width max_width
           json.height max_height
         end
-      # end
+      end
     end
 
     def vp9_item(json)
-      json.child! do
-        json.id vp9_id
-        json.type "Video"
-        #TODO: add webm codecs
-        json.format "video/webm"
-        json.width max_width
-        json.height max_height
+      if File.exist? vp9_filepath
+        json.child! do
+          json.id vp9_id
+          json.type "Video"
+          #TODO: add webm codecs
+          json.format "video/webm"
+          json.width max_width
+          json.height max_height
+        end
       end
     end
 
     def mp4_item(json)
-      json.child! do
-        json.id mp4_id
-        json.type "Video"
-        #TODO: add mp4 codecs
-        json.format "video/mp4"
-        json.width mp4_width
-        json.height mp4_height
+      if File.exist? mp4_filepath
+        json.child! do
+          json.id mp4_id
+          json.type "Video"
+          #TODO: add mp4 codecs
+          json.format "video/mp4"
+          json.width mp4_width
+          json.height mp4_height
+        end
       end
     end
 
     def captions_seealso(json)
-      json.child! do
-        json.id vtt_id
-        json.format 'application/webvtt'
-        json.label 'English captions'
-        json.language 'en'
-        json._comments "How make explicit how whether to use these as captions or subtitles?"
+      # TODO: update captions seeAlso for multiple captions
+      captions_file = File.join output_directory, 'vtt/captions.vtt'
+      if File.exist? captions_file
+        json.child! do
+          json.id vtt_id
+          json.format 'application/webvtt'
+          json.label 'English captions'
+          json.language 'en'
+          json._comments "How make explicit how whether to use these as captions or subtitles?"
+        end
       end
     end
 
     def sprites_seealso(json)
-      json.child! do
-        json.id sprites_id
-        json.format 'application/webvtt'
-        json.label 'image sprite metadata'
-        json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
+      if File.exist? sprites_filepath
+        json.child! do
+          json.id sprites_id
+          json.format 'application/webvtt'
+          json.label 'image sprite metadata'
+          json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
+        end
       end
     end
 
@@ -164,7 +175,7 @@ module Abrizer
     end
 
     def sprites_id
-      File.join media_base_url, 'sprites', 'sprites.vtt'
+      File.join media_base_url, sprites_partial_filepath
     end
 
     def duration

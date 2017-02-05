@@ -78,6 +78,14 @@ module Abrizer
       File.join output_directory, canvas_partial_filepath
     end
 
+    def sprites_partial_filepath
+      'sprites/sprites.vtt'
+    end
+
+    def sprites_filepath
+      File.join output_directory, sprites_partial_filepath
+    end
+
     def first_image_filepath
       File.join output_directory, 'sprites/images/img-00001.jpg'
     end
