@@ -40,9 +40,10 @@ Some steps must be run after others as they have preconditions in order for subs
 - `mp4`: Process a progressive download MP4 from original
 - `vp9`: Process a progressive download WebM VP9 from original
 - `sprites`: Create video sprites and metadata WebVTT file retaining all the images in order for a human to later pick a poster image
+- `poster`: Copies over a temporary poster image from the output of the sprites
 - `clean`: Clean out the intermediate and log files including MP4 files used for packaging but not required for delivery
 
-Every command requires the path to the original video file and an output directory.
+All of the above commands require the path to the original video file and an output directory.
 
 ### Command Line
 
@@ -78,6 +79,10 @@ Abrizer::All.new(video_path, output_directory).run
 
 Take a look at `lib/abrizer/all.rb` for how to use the various classes provided. You can also see more examples in `lib/abrizer/cli.rb`. All classes expect to be passed the fully expanded path.
 
+### Canvas
+
+Experimental support is provided for creating a IIIF Canvas. Note that this work is done in advance of a draft standard for including video in a IIIF manifest. It can be created after other steps with `abrizer help canvas` for more information.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -95,7 +100,7 @@ cd /vagrant
 bundle exec exe/abrizer all test/videos/FullHDCinemaCountdown720p-8sec.mp4 tmp/countdown http://localhost:8088/v
 ```
 
-Now visit http://localhost:8088/v/countdown/ to see the files that were created. You can then test any of the videos or streams. 
+Now visit http://localhost:8088/v/countdown/ to see the files that were created. You can then test any of the videos or streams.
 
 ## Contributing
 
