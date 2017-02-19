@@ -142,13 +142,14 @@ module Abrizer
     end
 
     def captions_item(json)
-      # TODO: update captions seeAlso for multiple captions
+      # TODO: update captions for multiple captions
       captions_file = File.join output_directory, 'vtt/captions.vtt'
       if File.exist? captions_file
         json.child! do
           json.id vtt_id
           json.type 'Text'
           json.format 'text/vtt'
+          json.kind 'captions'
           json.label 'English captions'
           json.language 'en'
           json._comments "How make explicit how whether to use these as captions or subtitles, descriptions, or chapters?"
@@ -167,6 +168,7 @@ module Abrizer
               json.id sprites_id
               json.type 'Text'
               json.format 'text/vtt'
+              json.kind 'metadata'
               json.label 'image sprite metadata'
               json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
             end
