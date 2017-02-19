@@ -68,12 +68,12 @@ module Abrizer
                   json.type 'Choice'
                   json.choiceHint 'client'
                   json.items do
-                    captions_seealso(json)
-                    sprites_seealso(json)
+                    captions_item(json)
                   end
                 end
               end
             end
+            sprites_item(json)
           end
 
         end
@@ -141,7 +141,7 @@ module Abrizer
       end
     end
 
-    def captions_seealso(json)
+    def captions_item(json)
       # TODO: update captions seeAlso for multiple captions
       captions_file = File.join output_directory, 'vtt/captions.vtt'
       if File.exist? captions_file
@@ -156,14 +156,22 @@ module Abrizer
       end
     end
 
-    def sprites_seealso(json)
+    def sprites_item(json)
       if File.exist? sprites_filepath
         json.child! do
-          json.id sprites_id
-          json.type 'Text'
-          json.format 'text/vtt'
-          json.label 'image sprite metadata'
-          json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
+          json.type 'Annotation'
+          json.motivation 'video-thumbnails'
+          json.target canvas_id
+          json.body do
+            json.child! do
+              json.id sprites_id
+              json.type 'Text'
+              json.format 'text/vtt'
+              json.label 'image sprite metadata'
+              json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
+            end
+          end
+
         end
       end
     end
