@@ -54,6 +54,14 @@ module Abrizer
       File.join output_directory, hlsts_partial_filepath
     end
 
+    def hlsts_aac_partial_filepath
+      'hls/audio/aac/eng/media.aac'
+    end
+
+    def hlsts_aac_filepath
+      File.join output_directory, hlsts_aac_partial_filepath
+    end
+
     def mp4_partial_filepath
       'progressive.mp4'
     end

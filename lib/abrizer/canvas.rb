@@ -43,25 +43,39 @@ module Abrizer
     end
 
     def media_json(json)
-      json.media do
+      json.content do
         json.child! do
-          json.type "Annotation"
-          json.motivation 'painting'
-          json.target canvas_id
-          json.body do
-            json.type "Choice"
-            json.items do
-              mpd_item(json)
-              hlsts_item(json)
-              vp9_item(json)
-              mp4_item(json)
-            end
-            json.seeAlso do
-              # TODO: Allow for adding more than one captions/subtitle file
-              captions_seealso(json)
-              sprites_seealso(json)
+          json.type "AnnotationPage"
+
+          json.items do
+            json.child! do
+              json.type 'Annotation'
+              json.motivation 'painting'
+              json.target canvas_id
+              json.body do
+                json.child! do
+                  json.type "Choice"
+                  json.choiceHint 'client'
+                  json.items do
+                    mpd_item(json)
+                    hlsts_item(json)
+                    vp9_item(json)
+                    mp4_item(json)
+                    aac_item(json)
+                  end
+                end
+                json.child! do
+                  json.type 'Choice'
+                  json.choiceHint 'client'
+                  json.items do
+                    captions_seealso(json)
+                    sprites_seealso(json)
+                  end
+                end
+              end
             end
           end
+
         end
       end
     end
@@ -117,13 +131,24 @@ module Abrizer
       end
     end
 
+    def aac_item(json)
+      if File.exist? hlsts_aac_filepath
+        json.child! do
+          json.id hlsts_aac_id
+          json.type "Audio"
+          json.format 'audio/aac'
+        end
+      end
+    end
+
     def captions_seealso(json)
       # TODO: update captions seeAlso for multiple captions
       captions_file = File.join output_directory, 'vtt/captions.vtt'
       if File.exist? captions_file
         json.child! do
           json.id vtt_id
-          json.format 'application/webvtt'
+          json.type 'Text'
+          json.format 'text/vtt'
           json.label 'English captions'
           json.language 'en'
           json._comments "How make explicit how whether to use these as captions or subtitles, descriptions, or chapters?"
@@ -135,7 +160,8 @@ module Abrizer
       if File.exist? sprites_filepath
         json.child! do
           json.id sprites_id
-          json.format 'application/webvtt'
+          json.type 'Text'
+          json.format 'text/vtt'
           json.label 'image sprite metadata'
           json._comments "How to include resources like video image sprites like those created by https://github.com/jronallo/video_sprites and used by various players?"
         end
@@ -160,6 +186,10 @@ module Abrizer
 
     def hlsts_id
       File.join media_base_url, hlsts_partial_filepath
+    end
+
+    def hlsts_aac_id
+      File.join media_base_url, hlsts_aac_partial_filepath
     end
 
     def mp4_id
