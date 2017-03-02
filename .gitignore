@@ -9,3 +9,4 @@
 /tmp/
 /.byebug_history
 /.vagrant
+/ansible/development-playbook.retry
