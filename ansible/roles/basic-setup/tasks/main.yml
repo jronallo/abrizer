@@ -38,3 +38,4 @@
     - zlib-devel
     - tree
     - jq
+    - unzip
