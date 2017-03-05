@@ -39,3 +39,4 @@
     - tree
     - jq
     - unzip
+    - ImageMagick

@@ -17,4 +17,7 @@
     - role: rvm_io.rvm1-ruby
       rvm1_rubies:
         - 2.3.3
+    - role: rvm-setup
+      users:
+        - vagrant
     - role: bento4
