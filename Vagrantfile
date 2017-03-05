@@ -4,7 +4,12 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "boxcutter/centos72"
 
-  config.vm.synced_folder '.', '/vagrant' #, type: 'nfs', mount_options: ['nolock', 'rw', 'vers=3', 'tcp', 'actimeo=2']
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.33.40"
+  
+  config.vm.synced_folder '.', '/vagrant', type: 'nfs', mount_options: ['nolock']
+
   config.vm.network "forwarded_port", guest: 80, host: 8088,
       auto_correct: true
 
