@@ -17,6 +17,7 @@ module Abrizer
       Abrizer::Sprites.new(@filename, @output_directory).create
       Abrizer::TemporaryPoster.new(@output_directory).copy
       Abrizer::Canvas.new(@filename, @output_directory, @base_url).create
+      Abrizer::Data.new(@filename, @output_directory, @base_url).create
       Abrizer::Cleaner.new(@filename, @output_directory).clean
     end
 

@@ -3,6 +3,8 @@ module Abrizer
   class Canvas
 
     include FilepathHelpers
+    include IdentifierHelpers
+    include InformationHelpers
 
     # TODO: allow control of items/versions listed on canvas
     def initialize(filepath, output_directory, base_url)
@@ -14,6 +16,7 @@ module Abrizer
     end
 
     def create
+      FileUtils.mkdir_p output_directory unless File.exist? output_directory
       File.open(canvas_filepath, 'w') do |fh|
         fh.puts create_json
       end
@@ -176,80 +179,6 @@ module Abrizer
 
         end
       end
-    end
-
-    def media_base_url
-      File.join @base_url, output_directory_basename
-    end
-
-    def canvas_id
-      File.join media_base_url, canvas_partial_filepath
-    end
-
-    def poster_id
-      File.join media_base_url, poster_partial_filepath
-    end
-
-    def mpd_id
-      File.join media_base_url, mpd_partial_filepath
-    end
-
-    def hlsts_id
-      File.join media_base_url, hlsts_partial_filepath
-    end
-
-    def hlsts_aac_id
-      File.join media_base_url, hlsts_aac_partial_filepath
-    end
-
-    def mp4_id
-      File.join media_base_url, mp4_partial_filepath
-    end
-
-    def vp9_id
-      File.join media_base_url, vp9_partial_filepath
-    end
-
-    def vtt_id
-      File.join media_base_url, 'vtt/captions.vtt'
-    end
-
-    def sprites_id
-      File.join media_base_url, sprites_partial_filepath
-    end
-
-    def duration
-      informer = Abrizer::FfprobeInformer.new(mp4_filename)
-      informer.duration.to_f
-    end
-
-    def max_width
-      @adaptations.last.width
-    end
-
-    def min_width
-      @adaptations.first.width
-    end
-
-    def max_height
-      @adaptations.last.height
-    end
-
-    def min_height
-      @adaptations.first.height
-    end
-
-    def mp4_width
-      @adaptations[-2].width
-    end
-
-    def mp4_height
-      @adaptations[-2].height
-    end
-
-    # TODO: DRY up with progressive_mp4.rb
-    def mp4_filename
-      File.join output_directory, "progressive.mp4"
     end
 
   end

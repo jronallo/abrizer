@@ -86,6 +86,14 @@ module Abrizer
       File.join output_directory, canvas_partial_filepath
     end
 
+    def data_partial_filepath
+      'data.json'
+    end
+
+    def data_filepath
+      File.join output_directory, data_partial_filepath
+    end
+
     def sprites_partial_filepath
       'sprites/sprites.vtt'
     end

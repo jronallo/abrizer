@@ -96,6 +96,13 @@ module Abrizer
       Abrizer::Canvas.new(filepath, output_directory, base_url).create
     end
 
+    desc 'data <filepath> <output_directory> <base_url>', 'Creates a JSON file with data about the video resources.'
+    def data(filepath, output_directory, base_url)
+      filepath = File.expand_path filepath
+      output_directory = File.expand_path output_directory
+      Abrizer::Data.new(filepath, output_directory, base_url).create
+    end
+
     desc 'clean <filepath> <output_directory>', 'Clean up intermediary files'
     def clean(filepath, output_dir=nil)
       Abrizer::Cleaner.new(filepath, output_dir).clean
