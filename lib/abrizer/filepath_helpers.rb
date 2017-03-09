@@ -78,6 +78,10 @@ module Abrizer
       File.join output_directory, vp9_partial_filepath
     end
 
+    def captions_filepath
+      File.join output_directory, 'vtt/captions.vtt'
+    end
+
     def canvas_partial_filepath
       'canvas.json'
     end

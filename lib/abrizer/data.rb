@@ -37,19 +37,10 @@ module Abrizer
           aac_source(json)
         end
         json.tracks do
-          json.child! do
-            json.id vtt_id
-            json.format 'text/vtt'
-            json.kind 'captions'
-            json.label 'English captions'
-            json.language 'en'
-          end
+          captions(json)
         end
         json.sprites do
-          json.id sprites_id
-          json.format 'text/vtt'
-          json.kind 'metadata'
-          json.label 'image sprite metadata'
+          sprites(json)
         end
       end
     end
@@ -110,6 +101,27 @@ module Abrizer
           json.id hlsts_aac_id
           json.format 'audio/aac'
         end
+      end
+    end
+
+    def captions(json)
+      if File.exist? captions_filepath
+        json.child! do
+          json.id vtt_id
+          json.format 'text/vtt'
+          json.kind 'captions'
+          json.label 'English captions'
+          json.language 'en'
+        end
+      end
+    end
+
+    def sprites(json)
+      if File.exist? sprites_filepath
+        json.id sprites_id
+        json.format 'text/vtt'
+        json.kind 'metadata'
+        json.label 'image sprite metadata'
       end
     end
 

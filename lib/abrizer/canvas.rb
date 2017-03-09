@@ -146,8 +146,7 @@ module Abrizer
 
     def captions_item(json)
       # TODO: update captions for multiple captions
-      captions_file = File.join output_directory, 'vtt/captions.vtt'
-      if File.exist? captions_file
+      if File.exist? captions_filepath
         json.child! do
           json.id vtt_id
           json.type 'Text'
