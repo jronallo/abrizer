@@ -34,6 +34,7 @@ module Abrizer
           mp4_source(json)
         end
         json.audio do
+          mp3_source(json)
           aac_source(json)
         end
         json.tracks do
@@ -91,6 +92,15 @@ module Abrizer
           json.format "video/mp4"
           json.width mp4_width
           json.height mp4_height
+        end
+      end
+    end
+
+    def mp3_source(json)
+      if File.exist? mp3_filepath
+        json.child! do
+          json.id mp3_id
+          json.format 'audio/mpeg'
         end
       end
     end

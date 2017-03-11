@@ -26,11 +26,7 @@ module Abrizer
     end
 
     def ffmpeg_cmd
-      "ffmpeg -y -i #{input_video_filepath} -i #{audio_filepath_fragmented} -c:v copy -c:a copy #{static_filepath}"
-    end
-
-    def static_filepath
-      File.join output_directory, "progressive.mp4"
+      "ffmpeg -y -i #{input_video_filepath} -i #{audio_filepath_fragmented} -c:v copy -c:a copy #{mp4_filepath}"
     end
 
   end

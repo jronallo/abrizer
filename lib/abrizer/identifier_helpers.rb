@@ -37,6 +37,10 @@ module Abrizer
       File.join media_base_url, vp9_partial_filepath
     end
 
+    def mp3_id
+      File.join media_base_url, mp3_partial_filepath
+    end
+
     def vtt_id
       File.join media_base_url, 'vtt/captions.vtt'
     end
