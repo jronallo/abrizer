@@ -11,6 +11,7 @@ module Abrizer
       Abrizer::Processor.process(@filename, @output_directory)
       Abrizer::ProgressiveMp4.new(@filename, @output_directory).create
       Abrizer::ProgressiveVp9.new(@filename, @output_directory).create
+      Abrizer::ProgressiveMp3.new(@filename, @output_directory).create
       Abrizer::PackageDashBento.new(@filename, @output_directory).package
       Abrizer::PackageHlsBento.new(@filename, @output_directory).package
       Abrizer::Captions.new(@filename, @output_directory).copy

@@ -78,6 +78,14 @@ module Abrizer
       File.join output_directory, vp9_partial_filepath
     end
 
+    def mp3_partial_filepath
+      'progressive.mp3'
+    end
+
+    def mp3_filepath
+      File.join output_directory, mp3_partial_filepath
+    end
+
     def captions_filepath
       File.join output_directory, 'vtt/captions.vtt'
     end

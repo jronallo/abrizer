@@ -1,4 +1,5 @@
 module Abrizer
+  # Creates the fMP4 files that are then packaged
   class FfmpegProcessor
 
     include FilepathHelpers

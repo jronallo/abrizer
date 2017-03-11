@@ -69,6 +69,15 @@ module Abrizer
       end
     end
 
+    desc 'mp3 <filepath> <output_directory>', 'Create a progressive MP3 file from the audio of the original media'
+    def mp3(filepath, output_directory)
+      # TODO: repeating expanding filepath and output_directory is probably the
+      # most annoying thing in this library. DRY this up somehow.
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_directory
+      Abrizer::ProgressiveMp3.new(filepath, output_dir).create
+    end
+
     desc 'sprites <filepath> <output_directory>', 'Create image sprites and metadata WebVTT file'
     def sprites(filepath, output_dir=nil)
       filepath = File.expand_path filepath
