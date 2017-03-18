@@ -37,7 +37,7 @@ module Abrizer
     end
 
     def make_directory
-      FileUtils.mkdir dash_directory unless File.exist? dash_directory
+      FileUtils.mkdir_p dash_directory unless File.exist? dash_directory
     end
 
     def dash_directory

@@ -19,7 +19,7 @@ module Abrizer
     end
 
     def make_directory
-      FileUtils.mkdir output_directory unless File.exist? output_directory
+      FileUtils.mkdir_p output_directory unless File.exist? output_directory
     end
 
     def first_pass_adaptation

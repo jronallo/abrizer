@@ -39,7 +39,7 @@ module Abrizer
     end
 
     def make_directory
-      FileUtils.mkdir hls_directory unless File.exist? hls_directory
+      FileUtils.mkdir_p hls_directory unless File.exist? hls_directory
     end
 
     def hls_directory
