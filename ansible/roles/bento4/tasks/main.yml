@@ -12,3 +12,7 @@
   file: path=/usr/local/bento4/ state=directory
 - name: move bento4
   shell: mv ~/Bento4-SDK-1-5-0-613.x86_64-unknown-linux/* /usr/local/bento4/.
+- name: set permissions on /usr/local/bento4/
+  file:
+    path: /usr/local/bento4/
+    mode: "u=rwx,go=rx"

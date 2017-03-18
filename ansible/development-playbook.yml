@@ -7,10 +7,10 @@
   gather_facts: yes
   roles:
     - role: basic-setup
-    - role: apache
     - role: franklinkim.environment
       environment_config:
         PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin
+    - role: apache
     - role: ffmpeg
       build_dir: /root/ffmpeg_build
       source_dir: /root/ffmpeg_sources

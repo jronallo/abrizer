@@ -18,6 +18,7 @@ module Abrizer
     def create
       processor = VideoSprites::Processor.new(@filename, @output_directory, @options)
       processor.process
+      FileUtils.chmod_R "go+r", @output_directory
     end
 
   end

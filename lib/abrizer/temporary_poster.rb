@@ -14,6 +14,7 @@ module Abrizer
 
     def copy
       FileUtils.cp first_image_filepath, poster_image_filepath
+      FileUtils.chmod "ugo+r", poster_image_filepath
     end
 
   end

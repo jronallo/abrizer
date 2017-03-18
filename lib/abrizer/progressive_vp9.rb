@@ -37,7 +37,7 @@ module Abrizer
     def ffmpeg_cmd_pass1
       "ffmpeg -y -i #{@filename} -c:v libvpx-vp9 -b:v #{bitrate}k -c:a libvorbis \
        -vf scale='#{@adaptation.width}:trunc(#{@adaptation.width}/dar/2)*2',setsar=1 \
-       -speed 4 -tile-columns 6 -frame-parallel 1 \
+       -speed 4 -tile-columns 6 -frame-parallel 1 -pix_fmt yuv420p \
        -pass 1 -passlogfile ffmpeg2pass-webm -f webm /dev/null"
     end
 
@@ -45,7 +45,7 @@ module Abrizer
       "ffmpeg -y -i #{@filename} -c:v libvpx-vp9 -b:v #{bitrate}k -c:a libvorbis \
        -vf scale='#{@adaptation.width}:trunc(#{@adaptation.width}/dar/2)*2',setsar=1 \
        -speed 1 -tile-columns 6 -frame-parallel 1 -auto-alt-ref 1 -lag-in-frames 25 \
-       -pass 2 -passlogfile ffmpeg2pass-webm -y #{static_filepath}"
+       -pass 2 -passlogfile ffmpeg2pass-webm -pix_fmt yuv420p #{static_filepath}"
     end
 
     def static_filepath
