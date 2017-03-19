@@ -2,6 +2,7 @@ module Abrizer
   class ProgressiveMp3
 
     include FilepathHelpers
+    include DebugSettings
 
     def initialize(filepath, output_directory)
       @filepath = filepath
