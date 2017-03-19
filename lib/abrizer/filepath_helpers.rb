@@ -38,6 +38,10 @@ module Abrizer
       'poster.jpg'
     end
 
+    def poster_filepath
+      File.join output_directory, poster_partial_filepath
+    end
+
     def mpd_partial_filepath
       'fmp4/stream.mpd'
     end

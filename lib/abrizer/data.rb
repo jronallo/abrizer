@@ -27,6 +27,9 @@ module Abrizer
         json.max_width max_width
         json.max_height max_height
         json.duration duration
+        json.poster do
+          poster(json)
+        end
         json.video do
           mpd_source(json)
           hlsts_source(json)
@@ -42,6 +45,17 @@ module Abrizer
         end
         json.sprites do
           sprites(json)
+        end
+      end
+    end
+
+    def poster(json)
+      if File.exist? poster_filepath
+        json.child! do
+          json.id poster_id
+          json.format "image/jpg"
+          json.width max_width
+          json.height max_height
         end
       end
     end
