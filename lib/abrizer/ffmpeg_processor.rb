@@ -3,6 +3,7 @@ module Abrizer
   class FfmpegProcessor
 
     include FilepathHelpers
+    include DebugSettings
 
     def initialize(filename, output_dir=nil)
       @filename = filename
