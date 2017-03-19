@@ -51,7 +51,7 @@ module Abrizer
     end
 
     def process_audio
-      `ffmpeg -y -i #{@filename} -c:a libfdk_aac -b:a 128k -vn #{audio_filepath}`
+      `ffmpeg -y #{debug_settings} -i #{@filename} -c:a libfdk_aac -b:a 128k -vn #{audio_filepath}`
       `mp4fragment #{audio_filepath} #{audio_filepath_fragmented}`
       FileUtils.rm audio_filepath
     end

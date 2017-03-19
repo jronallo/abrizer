@@ -6,6 +6,7 @@ require 'jbuilder'
 require 'video_sprites'
 require "abrizer/version"
 require 'abrizer/filepath_helpers'
+require 'abrizer/debug_settings'
 require 'abrizer/identifier_helpers'
 require 'abrizer/information_helpers'
 require 'abrizer/package_dash_shaka'

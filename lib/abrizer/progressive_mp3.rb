@@ -13,7 +13,7 @@ module Abrizer
     end
 
     def ffmpeg_cmd
-      "ffmpeg -y -i #{@filepath} -vn -c:a libmp3lame -b:a 128k #{mp3_filepath}"
+      "ffmpeg -y #{debug_settings} -i #{@filepath} -vn -c:a libmp3lame -b:a 128k #{mp3_filepath}"
     end
 
   end

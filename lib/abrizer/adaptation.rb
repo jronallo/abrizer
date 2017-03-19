@@ -2,6 +2,7 @@ module Abrizer
   class Adaptation
 
     include FilepathHelpers
+    include DebugSettings
 
     attr_reader :width, :height, :bitrate
 
@@ -12,8 +13,9 @@ module Abrizer
     end
 
     def ffmpeg_cmd(input, output_directory, pass)
-      cmd = %Q|ffmpeg -y -i #{input} -vf \
-          scale='#{width}:trunc(#{width}/dar/2)*2',setsar=1 \
+      cmd = %Q|ffmpeg -y #{debug_settings} \
+          -i #{input} -vf \
+          yadif,scale='#{width}:trunc(#{width}/dar/2)*2',setsar=1 \
           -an -c:v libx264 -x264opts 'keyint=48:min-keyint=48:no-scenecut' \
           -b:v #{bitrate}k -preset faster -pix_fmt yuv420p |
       if pass == 2
