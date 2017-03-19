@@ -40,3 +40,4 @@
     - jq
     - unzip
     - ImageMagick
+    - jpegoptim

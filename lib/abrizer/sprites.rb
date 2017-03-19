@@ -19,6 +19,36 @@ module Abrizer
       processor = VideoSprites::Processor.new(@filename, @output_directory, @options)
       processor.process
       FileUtils.chmod_R "go+r", @output_directory
+      optimize_images
+    end
+
+    def optimize_images
+      optimize_sprites
+      optimize_individual_images
+    end
+
+    def optimize_sprites
+      `jpegoptim #{sprite_paths.join(' ')}`
+    end
+
+    def sprite_paths
+      Dir.glob(sprites_glob)
+    end
+
+    def sprites_glob
+      File.join @output_directory, "*.jpg"
+    end
+
+    def optimize_individual_images
+      `jpegoptim #{individual_image_paths.join(' ')}`
+    end
+
+    def individual_image_paths
+      Dir.glob(individual_image_glob)
+    end
+
+    def individual_image_glob
+      File.join @output_directory, "images/*.jpg"
     end
 
   end
