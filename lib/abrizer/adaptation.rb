@@ -51,5 +51,13 @@ module Abrizer
       "Width: #{@width}, Height: #{@height}, Bitrate: #{@bitrate}"
     end
 
+    def to_json
+      MultiJson.dump(to_hash)
+    end
+
+    def to_hash
+      {width: @width, height: @height, bitrate: @bitrate}
+    end
+
   end
 end

@@ -1,4 +1,9 @@
 require 'thor'
+
+if ENV['DEBUG_ABRIZER']
+  require 'byebug'
+end
+
 module Abrizer
   class CLI < Thor
 
@@ -7,6 +12,13 @@ module Abrizer
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
       Abrizer::All.new(filepath, output_dir, base_url).run
+    end
+
+    desc 'ffprobe <filepath> <output_directory>', 'Save the output of ffprobe to a file as JSON'
+    def ffprobe(filepath, output_dir)
+      filepath = File.expand_path filepath
+      output_dir = File.expand_path output_dir
+      Abrizer::FfprobeFile.new(filepath, output_dir).run
     end
 
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams, includes processing MP4 adaptations for packaging'
@@ -39,9 +51,9 @@ module Abrizer
       Abrizer::ProgressiveVp9.new(filepath, output_dir).create
     end
 
-    desc 'adaptations <filepath>', 'Display which adaptations will be created from input file'
-    def adaptations(filepath)
-      adaptations = Abrizer::AdaptationFinder.new(filepath).adaptations
+    desc 'adaptations <filepath> <output_directory>', 'Output which adaptations will be created from input file to a JSON file and output to console'
+    def adaptations(filepath, output_directory=nil)
+      adaptations = Abrizer::AdaptationsFile.new(filepath, output_directory).adaptations
       puts adaptations
     end
 
@@ -98,16 +110,15 @@ module Abrizer
       Abrizer::Captions.new(filepath, output_dir).copy
     end
 
-    desc 'canvas <filepath> <output_directory> <base_url>', 'Creates a IIIF Canvas JSON-LD document as an API into the resources'
+    desc 'canvas <filepath_or_identifier> <output_directory> <base_url>', 'Creates a IIIF Canvas JSON-LD document as an API into the resources'
     def canvas(filepath, output_directory, base_url)
       filepath = File.expand_path filepath
       output_directory = File.expand_path output_directory
       Abrizer::Canvas.new(filepath, output_directory, base_url).create
     end
 
-    desc 'data <filepath> <output_directory> <base_url>', 'Creates a JSON file with data about the video resources.'
+    desc 'data <filepath_or_identifier> <output_directory> <base_url>', 'Creates a JSON file with data about the video resources.'
     def data(filepath, output_directory, base_url)
-      filepath = File.expand_path filepath
       output_directory = File.expand_path output_directory
       Abrizer::Data.new(filepath, output_directory, base_url).create
     end

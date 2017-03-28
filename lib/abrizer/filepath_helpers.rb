@@ -34,6 +34,14 @@ module Abrizer
       File.basename @filename, extname
     end
 
+    def ffprobe_filepath
+      File.join output_directory, 'ffprobe.json'
+    end
+
+    def adaptations_filepath
+      File.join output_directory, 'adaptations.json'
+    end
+
     def poster_partial_filepath
       'poster.jpg'
     end

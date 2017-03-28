@@ -4,6 +4,7 @@ MultiJson.use :yajl
 MultiJson.dump_options = {pretty: true}
 require 'jbuilder'
 require 'video_sprites'
+require 'ostruct'
 require "abrizer/version"
 require 'abrizer/filepath_helpers'
 require 'abrizer/debug_settings'
@@ -15,8 +16,10 @@ require 'abrizer/package_dash_bento'
 require 'abrizer/package_hls_bento'
 require 'abrizer/adaptation'
 require 'abrizer/adaptation_finder'
+require 'abrizer/adaptations_file'
 require 'abrizer/ffmpeg_processor'
 require 'abrizer/ffprobe_informer'
+require 'abrizer/ffprobe_file'
 require 'abrizer/processor'
 require 'abrizer/cleaner'
 require 'abrizer/progressive_mp4'
