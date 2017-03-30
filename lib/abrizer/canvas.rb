@@ -5,14 +5,16 @@ module Abrizer
     include FilepathHelpers
     include IdentifierHelpers
     include InformationHelpers
+      include ReadAdaptations
 
     # TODO: allow control of items/versions listed on canvas
     def initialize(filepath, output_directory, base_url)
-      @filename = filepath
+      @filepath = filepath
       @output_directory = output_directory
       @base_url = base_url
-      finder = AdaptationFinder.new(@filename)
-      @adaptations = finder.adaptations
+      # finder = AdaptationFinder.new(@filename)
+      # @adaptations = finder.adaptations
+      read_adaptations
     end
 
     def create

@@ -7,6 +7,7 @@ require 'video_sprites'
 require 'ostruct'
 require "abrizer/version"
 require 'abrizer/filepath_helpers'
+require 'abrizer/read_adaptations'
 require 'abrizer/debug_settings'
 require 'abrizer/identifier_helpers'
 require 'abrizer/information_helpers'
