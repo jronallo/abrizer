@@ -69,5 +69,13 @@ module Abrizer
       "#{width}x#{height} DAR:#{display_aspect_ratio}"
     end
 
+    def to_json
+      information = @info
+      info_filename = information['format']['filename']
+      truncated_filename = File.basename info_filename
+      information['format']['filename'] = truncated_filename
+      MultiJson.dump information
+    end
+
   end
 end

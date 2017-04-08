@@ -10,7 +10,7 @@ module Abrizer
 
     def run
       File.open(ffprobe_filepath, 'w') do |fh|
-        fh.puts @informer.json_result
+        fh.puts @informer.to_json
       end
     end
   end
