@@ -52,7 +52,7 @@ From the command line you can see help with: `abrizer`
 To see help for a particular command run: `abrizer help abr`
 
 You can run all steps with:
-`abrizer all /path/to/video.mp4 /path/to/output_directory`
+`abrizer all /path/to/video.mp4 /path/to/output_directory http://localhost:8088/v`
 
 Or just create various adaptations needed for repackaging to DASH and HLS:
 `abrizer process /path/to/video.mp4 /path/to/output_directory`
