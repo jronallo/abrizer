@@ -10,7 +10,9 @@ module Abrizer
   end
 
   class FfprobeError < StandardError
+  end
 
+  class Mp4AdaptationNotFoundError < StandardError
   end
 
 end

@@ -10,11 +10,15 @@ module Abrizer
     end
 
     def create
-      `#{ffmpeg_cmd}`
+      if File.exist? input_video_filepath
+        `#{ffmpeg_cmd}`
+      else
+        raise Mp4AdaptationNotFoundError
+      end
     end
 
     def find_adaptation
-      adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
+      adaptations = Abrizer::AdaptationFinder.new(@filename, @output_directory).adaptations
       sorted = adaptations.sort_by do |adaptation|
        adaptation.width
       end
@@ -22,7 +26,7 @@ module Abrizer
     end
 
     def input_video_filepath
-      @adaptation.filepath_fragmented(@filename, output_directory)
+      @adaptation.filepath_fragmented(@filename, @output_directory)
     end
 
     def ffmpeg_cmd

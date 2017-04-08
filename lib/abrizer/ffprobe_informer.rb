@@ -88,7 +88,7 @@ module Abrizer
     end
 
     def ffmpeg_info_cmd
-      "ffprobe -v error -print_format json -show_format -show_streams #{@filename}"
+      "ffprobe -v error -print_format json -show_format -show_streams #{@filepath}"
     end
 
     def to_s
