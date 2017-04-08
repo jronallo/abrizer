@@ -33,7 +33,7 @@ module Abrizer
         json.height max_height
         json.duration duration
         thumbnail_json(json)
-        media_json(json)
+        media_json(json) if media_content?
       end
     end
 
@@ -45,6 +45,10 @@ module Abrizer
           json.format 'image/jpeg'
         end
       end
+    end
+
+    def media_content?
+      all_media_paths.any? { |f| File.exist? f }
     end
 
     def media_json(json)

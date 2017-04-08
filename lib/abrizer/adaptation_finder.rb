@@ -11,9 +11,9 @@ module Abrizer
   # through our workflow, so there might be some missing.
   class AdaptationFinder
     attr_reader :adaptations, :info
-    def initialize(filename)
+    def initialize(filename, output_dir=nil)
       @filename = filename
-      @informer = Abrizer::FfprobeInformer.new(filename)
+      @informer = Abrizer::FfprobeInformer.new(filename, output_dir)
       find_adaptations
     end
 
@@ -32,7 +32,7 @@ module Abrizer
       @adaptations = adaptations.select{|adaptation| adaptation.width <= @informer.width}
     end
 
-    # The bitrates here are based on H.264 encoding. 
+    # The bitrates here are based on H.264 encoding.
     def ar_4_3_adaptations
       [
         {width: 224, height: 168, bitrate: 200},

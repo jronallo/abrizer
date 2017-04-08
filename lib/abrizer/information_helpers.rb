@@ -2,7 +2,7 @@ module Abrizer
   module InformationHelpers
 
     def duration
-      informer = Abrizer::FfprobeInformer.new(mp4_filepath)
+      informer = Abrizer::FfprobeInformer.new(mp4_filepath, @output_directory)
       informer.duration.to_f
     end
 

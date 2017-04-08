@@ -1,5 +1,10 @@
 module Abrizer
   module FilepathHelpers
+
+    def all_media_paths
+      [mpd_filepath, hlsts_filepath, vp9_filepath, mp4_filepath, captions_filepath, sprites_filepath]
+    end
+
     def audio_filepath
       File.join output_directory, "#{basename}-audio.m4a"
     end

@@ -6,6 +6,7 @@ module Abrizer
     def initialize(filepath, output_directory)
       @filepath = filepath
       @output_directory = output_directory
+      FileUtils.mkdir_p @output_directory unless File.exist? @output_directory
     end
 
     def adaptations

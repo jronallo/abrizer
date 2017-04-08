@@ -9,6 +9,7 @@ require 'ostruct'
 
 %w[
   version
+  errors
   filepath_helpers
   read_adaptations
   debug_settings

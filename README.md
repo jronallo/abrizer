@@ -30,10 +30,13 @@ See [Vagrant](#vagrant) below for one way to install dependencies and run the sc
 
 ## Usage
 
-Abrizer knows how to run various processes which can take a master or mezzanine video and create DASH and HLS streaming formats along with other derivatives like a fallback MP4 and WebM. The gem is opinionated about what formats to create and what settings to use. The intention is to provide a relatively complete but simple solution for delivering video over HTTP.
+Abrizer knows how to run various processes which can take a master or mezzanine video and create various access derivative formats including DASH and HLS streaming formats as well as fallback MP4 and WebM (VP9). The gem is opinionated about what formats to create and what settings to use. The intention is to provide a relatively complete but simple solution for delivering video over HTTP for HTML5 video.
 
 Some steps must be run after others as they have preconditions in order for subsequent steps to run. Later cleaning steps will remove intermediate and log files. You can see the latest full set of processes Abrizer can run by looking in `lib/abrizer/cli.rb` for the `abr` method. The current order is:
 
+
+
+- `ffprobe`: Saves the output of ffprobe to a file as JSON. This way the mezzanine file does not have to be present to
 - `process`: Process the adaptations that will be repackaged into ABR formats
 - `package dash`: Package DASH (and HLS with fMP4) using output of `process`
 - `package hls`: Package HLS (TS) using output of `process`

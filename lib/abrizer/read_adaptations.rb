@@ -25,7 +25,7 @@ module Abrizer
         @filename = vp9_filepath
         find_adaptations
       else
-        raise "Neither original file or VP9 version exist."
+        raise ReadAdaptationsError
       end
     end
 
