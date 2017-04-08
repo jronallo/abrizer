@@ -5,7 +5,7 @@ module Abrizer
     include FilepathHelpers
     include IdentifierHelpers
     include InformationHelpers
-      include ReadAdaptations
+    include ReadAdaptations
 
     # TODO: allow control of items/versions listed on canvas
     def initialize(filepath, output_directory, base_url)

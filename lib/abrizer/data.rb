@@ -19,11 +19,6 @@ module Abrizer
       read_adaptations
     end
 
-    def find_adaptations
-      finder = AdaptationFinder.new(@filename)
-      @adaptations = finder.adaptations
-    end
-
     def create
       FileUtils.mkdir_p output_directory unless File.exist? output_directory
       File.open(data_filepath, 'w') do |fh|

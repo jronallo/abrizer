@@ -1,8 +1,6 @@
 module Abrizer
   module ReadAdaptations
 
-
-
     def read_adaptations
       # Either we have a filepath to an original or we make the assumption we
       # really have an identifier instead of a filepath and we use that
@@ -30,5 +28,11 @@ module Abrizer
         raise "Neither original file or VP9 version exist."
       end
     end
+
+    def find_adaptations
+      finder = AdaptationFinder.new(@filename)
+      @adaptations = finder.adaptations
+    end
+
   end
 end
