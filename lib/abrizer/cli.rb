@@ -73,7 +73,7 @@ module Abrizer
     shared_options :input_required
     def inform
       input = expand_path options[:input]
-      informer = FfprobeInformer.new(input)
+      informer = FfprobeInformer.new(filepath: input)
       puts informer.json_result
       puts informer
     end

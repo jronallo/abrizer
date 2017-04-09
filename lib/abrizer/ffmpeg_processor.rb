@@ -8,7 +8,7 @@ module Abrizer
     def initialize(filename, output_dir)
       @filename = filename
       @output_directory = output_dir
-      @adaptation_finder = Abrizer::AdaptationFinder.new(@filename)
+      @adaptation_finder = Abrizer::AdaptationFinder.new(filepath: @filename)
     end
 
     def process
@@ -24,7 +24,7 @@ module Abrizer
     end
 
     def first_pass_adaptation
-      adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
+      adaptations = Abrizer::AdaptationFinder.new(filepath: @filename).adaptations
       sorted = adaptations.sort_by do |adaptation|
        adaptation.width
       end

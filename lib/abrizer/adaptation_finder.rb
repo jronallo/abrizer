@@ -11,8 +11,10 @@ module Abrizer
   # through our workflow, so there might be some missing.
   class AdaptationFinder
     attr_reader :adaptations, :info
-    def initialize(filename, output_dir=nil)
-      @informer = Abrizer::FfprobeInformer.new(filename, output_dir)
+    def initialize(filepath: nil, output_directory: nil)
+      # TODO: raise an error if both filepath and output_directory
+      # are both nil.
+      @informer = Abrizer::FfprobeInformer.new(filepath: filepath, output_directory: output_directory)
       find_adaptations
     end
 

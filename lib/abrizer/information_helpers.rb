@@ -1,8 +1,10 @@
 module Abrizer
   module InformationHelpers
 
+    # TODO: Could this be more flexible to potentially use a file
+    # other than the mp4_filepath?
     def duration
-      informer = Abrizer::FfprobeInformer.new(mp4_filepath, @output_directory)
+      informer = Abrizer::FfprobeInformer.new(filepath: mp4_filepath, output_directory: @output_directory)
       informer.duration.to_f
     end
 

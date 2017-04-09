@@ -4,8 +4,8 @@ module Abrizer
     include FilepathHelpers
 
     attr_reader :json_result, :info
-    def initialize(filename, output_directory=nil)
-      @filepath = filename
+    def initialize(filepath: nil, output_directory: nil)
+      @filepath = filepath
       @output_directory = output_directory
       get_info
     end

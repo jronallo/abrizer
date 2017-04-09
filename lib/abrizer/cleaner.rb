@@ -5,7 +5,7 @@ module Abrizer
 
     def initialize(output_dir)
       @output_directory = output_dir
-      @adaptations = Abrizer::AdaptationFinder.new(@filename, @output_directory).adaptations
+      @adaptations = Abrizer::AdaptationFinder.new(output_directory: @output_directory).adaptations
     end
 
     def clean

@@ -5,7 +5,7 @@ module Abrizer
 
     def initialize(filename, output_dir=nil)
       @filename = filename
-      @adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
+      @adaptations = Abrizer::AdaptationFinder.new(filepath: @filename).adaptations
     end
 
     def package

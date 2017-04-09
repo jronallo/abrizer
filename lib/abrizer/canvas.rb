@@ -12,8 +12,6 @@ module Abrizer
       @output_directory = output_directory
       FileUtils.mkdir_p output_directory unless File.exist? output_directory
       @base_url = base_url
-      # finder = AdaptationFinder.new(@filename)
-      # @adaptations = finder.adaptations
       read_adaptations
     end
 

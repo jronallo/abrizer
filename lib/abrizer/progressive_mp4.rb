@@ -17,7 +17,7 @@ module Abrizer
     end
 
     def find_adaptation
-      adaptations = Abrizer::AdaptationFinder.new(nil, @output_directory).adaptations
+      adaptations = Abrizer::AdaptationFinder.new(output_directory: @output_directory).adaptations
       sorted = adaptations.sort_by do |adaptation|
        adaptation.width
       end

@@ -30,7 +30,7 @@ module Abrizer
     end
 
     def find_adaptations
-      finder = AdaptationFinder.new(@filename)
+      finder = AdaptationFinder.new(filepath: @filename)
       @adaptations = finder.adaptations
     end
 

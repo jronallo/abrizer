@@ -4,7 +4,7 @@ module Abrizer
     include FilepathHelpers
 
     def initialize(filename, output_directory)
-      @informer = FfprobeInformer.new(filename)
+      @informer = FfprobeInformer.new(filepath: filename)
       @output_directory = output_directory
       FileUtils.mkdir_p @output_directory unless File.exist? @output_directory
     end

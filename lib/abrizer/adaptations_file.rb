@@ -10,7 +10,7 @@ module Abrizer
     end
 
     def adaptations
-      adapt = Abrizer::AdaptationFinder.new(@filepath, @output_directory).adaptations
+      adapt = Abrizer::AdaptationFinder.new(filepath: @filepath, output_directory: @output_directory).adaptations
       adapt_dump = adapt.map{|a| a.to_hash}
       File.open(adaptations_filepath, 'w') do |fh|
         fh.puts MultiJson.dump(adapt_dump)
