@@ -11,7 +11,7 @@ module Abrizer
     end
 
     def get_info
-      if File.exist?(File.expand_path(@filepath)) && !File.directory?(@filepath)
+      if @filepath && File.exist?(@filepath) && !File.directory?(@filepath)
         get_info_with_command
       elsif @output_directory && File.exist?(ffprobe_filepath)
         get_info_from_file

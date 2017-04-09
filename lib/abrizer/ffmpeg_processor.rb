@@ -5,7 +5,7 @@ module Abrizer
     include FilepathHelpers
     include DebugSettings
 
-    def initialize(filename, output_dir=nil)
+    def initialize(filename, output_dir)
       @filename = filename
       @output_directory = output_dir
       @adaptation_finder = Abrizer::AdaptationFinder.new(@filename)
@@ -46,8 +46,8 @@ module Abrizer
         cmd = adaptation.ffmpeg_cmd(@filename, output_directory, 2)
         puts cmd
         `#{cmd}`
-        `mp4fragment #{adaptation.filepath(@filename, output_directory)} #{adaptation.filepath_fragmented(@filename, output_directory)}`
-        FileUtils.rm adaptation.filepath(@filename, output_directory)
+        `mp4fragment #{adaptation.filepath(output_directory)} #{adaptation.filepath_fragmented(output_directory)}`
+        FileUtils.rm adaptation.filepath(output_directory)
       end
     end
 

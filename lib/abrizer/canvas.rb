@@ -8,9 +8,9 @@ module Abrizer
     include ReadAdaptations
 
     # TODO: allow control of items/versions listed on canvas
-    def initialize(filepath, output_directory, base_url)
-      @filepath = filepath
+    def initialize(output_directory, base_url)
       @output_directory = output_directory
+      FileUtils.mkdir_p output_directory unless File.exist? output_directory
       @base_url = base_url
       # finder = AdaptationFinder.new(@filename)
       # @adaptations = finder.adaptations
@@ -18,7 +18,6 @@ module Abrizer
     end
 
     def create
-      FileUtils.mkdir_p output_directory unless File.exist? output_directory
       File.open(canvas_filepath, 'w') do |fh|
         fh.puts create_json
       end

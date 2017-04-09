@@ -6,6 +6,7 @@ module Abrizer
     def initialize(filename, output_directory)
       @informer = FfprobeInformer.new(filename)
       @output_directory = output_directory
+      FileUtils.mkdir_p @output_directory unless File.exist? @output_directory
     end
 
     def run

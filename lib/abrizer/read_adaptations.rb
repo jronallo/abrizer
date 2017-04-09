@@ -7,7 +7,7 @@ module Abrizer
       # identifier to look for an adaptations.json file. Failing finding the
       # adaptations.json file we just use the adaptations based on the
       # vp9_filepath.
-      if File.exist?(File.expand_path(@filepath)) && !File.directory?(@filepath)
+      if @filepath && File.exist?(@filepath) && !File.directory?(@filepath)
         @filename = @filepath
         find_adaptations
       elsif File.exist? adaptations_filepath

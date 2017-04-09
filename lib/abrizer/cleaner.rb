@@ -3,10 +3,9 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename, output_dir=nil)
-      @filename = filename
+    def initialize(output_dir)
       @output_directory = output_dir
-      @adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
+      @adaptations = Abrizer::AdaptationFinder.new(@filename, @output_directory).adaptations
     end
 
     def clean
@@ -17,7 +16,7 @@ module Abrizer
 
     def delete_adaptations(adapts)
       adapts.map do |adaptation|
-        filepath = adaptation.filepath_fragmented(@filename, output_directory)
+        filepath = adaptation.filepath_fragmented(output_directory)
         FileUtils.rm filepath if File.exist? filepath
       end
     end

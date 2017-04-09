@@ -6,23 +6,25 @@ module Abrizer
     end
 
     def audio_filepath
-      File.join output_directory, "#{basename}-audio.m4a"
+      File.join output_directory, "adaptation-audio.m4a"
     end
 
     def audio_filepath_fragmented
-      File.join output_directory, "#{basename}-audio-frag.m4a"
+      File.join output_directory, "adaptation-audio-frag.m4a"
     end
 
+    # TODO: webvtt_input_filepath should look multiple places in case vtt
+    # file(s) already copied over.    
     def webvtt_input_filepath
-      File.join filename_directory, "#{basename}.vtt"
+      File.join filename_directory, "#{basename}.vtt" if @filename
     end
 
     def output_directory
-      if @output_directory
+      # if @output_directory
         @output_directory
-      else
-        File.join filename_directory, basename
-      end
+      # else
+      #   File.join filename_directory, basename
+      # end
     end
 
     def output_directory_basename

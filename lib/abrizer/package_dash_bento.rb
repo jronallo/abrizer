@@ -3,10 +3,9 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename, output_dir=nil)
-      @filename = filename
+    def initialize(output_dir)
       @output_directory = output_dir
-      @adaptations = Abrizer::AdaptationFinder.new(@filename).adaptations
+      @adaptations = Abrizer::AdaptationFinder.new(nil, @output_directory).adaptations
     end
 
     def package
@@ -17,13 +16,13 @@ module Abrizer
 
     def video_inputs
       @adaptations.map do |adaptation|
-        adaptation.filepath_fragmented(@filename, output_directory)
+        adaptation.filepath_fragmented(output_directory)
       end
     end
 
     def bento_cmd
       cmd = %Q|mp4dash --output-dir=fmp4 --force --use-segment-template-number-padding --profiles=live --hls |
-      if File.exist? webvtt_input_filepath
+      if webvtt_input_filepath && File.exist?(webvtt_input_filepath)
         cmd += %Q| [+format=webvtt,+language=eng]#{webvtt_input_filepath} |
       end
       cmd += %Q| #{video_inputs.join(' ')} [+language=eng]#{audio_filepath_fragmented} |

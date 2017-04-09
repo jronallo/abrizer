@@ -7,15 +7,9 @@ module Abrizer
     include InformationHelpers
     include ReadAdaptations
 
-    def initialize(filepath, output_directory, base_url)
-      @filepath = filepath
-      # This is kind of hacky, but if the @output_directory is set then we can
-      # use that to look up the vp9_filepath
+    def initialize(output_directory, base_url)
       @output_directory = output_directory
       @base_url = base_url
-
-      # This sets @filename in some cases and more importantly sets @adaptations
-      # based on the filepath or identifier that's passed in.
       read_adaptations
     end
 

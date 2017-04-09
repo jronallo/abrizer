@@ -3,8 +3,7 @@ module Abrizer
 
     include FilepathHelpers
 
-    def initialize(filename, output_dir=nil)
-      @filename = filename
+    def initialize(output_dir)
       @output_directory = output_dir
       find_adaptation
     end
@@ -18,7 +17,7 @@ module Abrizer
     end
 
     def find_adaptation
-      adaptations = Abrizer::AdaptationFinder.new(@filename, @output_directory).adaptations
+      adaptations = Abrizer::AdaptationFinder.new(nil, @output_directory).adaptations
       sorted = adaptations.sort_by do |adaptation|
        adaptation.width
       end
@@ -26,7 +25,7 @@ module Abrizer
     end
 
     def input_video_filepath
-      @adaptation.filepath_fragmented(@filename, @output_directory)
+      @adaptation.filepath_fragmented(@output_directory)
     end
 
     def ffmpeg_cmd

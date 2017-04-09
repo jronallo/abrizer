@@ -12,7 +12,6 @@ module Abrizer
   class AdaptationFinder
     attr_reader :adaptations, :info
     def initialize(filename, output_dir=nil)
-      @filename = filename
       @informer = Abrizer::FfprobeInformer.new(filename, output_dir)
       find_adaptations
     end

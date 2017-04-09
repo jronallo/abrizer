@@ -19,7 +19,7 @@ module Abrizer
           -an -c:v libx264 -x264opts 'keyint=48:min-keyint=48:no-scenecut' \
           -b:v #{bitrate}k -preset faster -pix_fmt yuv420p |
       if pass == 2
-        cmd += %Q| -maxrate #{constrained_bitrate}k -bufsize #{bitrate}k -pass 2 #{filepath(input, output_directory)} |
+        cmd += %Q| -maxrate #{constrained_bitrate}k -bufsize #{bitrate}k -pass 2 #{filepath(output_directory)} |
       else
         cmd += " -pass 1 -f mp4 /dev/null "
       end
@@ -31,19 +31,17 @@ module Abrizer
       @bitrate * 1.1
     end
 
-    def outfile_basename(input)
-      extname = File.extname input
-      basename = File.basename input, extname
-      "#{basename}-#{width}x#{height}-#{bitrate}"
+    def outfile_basename
+      "adaptation-#{width}x#{height}-#{bitrate}"
     end
 
-    def filepath(input, output_directory)
-      name = "#{outfile_basename(input)}.mp4"
+    def filepath(output_directory)
+      name = "#{outfile_basename}.mp4"
       File.join output_directory, name
     end
 
-    def filepath_fragmented(input, output_directory)
-      name = "#{outfile_basename(input)}-frag.mp4"
+    def filepath_fragmented(output_directory)
+      name = "#{outfile_basename}-frag.mp4"
       File.join output_directory, name
     end
 

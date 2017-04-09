@@ -28,6 +28,10 @@ Or install it yourself as:
 
 See [Vagrant](#vagrant) below for one way to install dependencies and run the scripts.
 
+## Versioning
+
+API may change in breaking ways until version 1.0.0 when breaking changes will update the major version number.
+
 ## Usage
 
 Abrizer knows how to run various processes which can take a master or mezzanine video and create various access derivative formats including DASH and HLS streaming formats as well as fallback MP4 and WebM (VP9). The gem is opinionated about what formats to create and what settings to use. The intention is to provide a relatively complete but simple solution for delivering video over HTTP for HTML5 video.

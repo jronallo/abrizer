@@ -1,4 +1,5 @@
 module Abrizer
+  # TODO: Allow MP3 to be created from the adaptation audio
   class ProgressiveMp3
 
     include FilepathHelpers
