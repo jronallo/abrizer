@@ -1,8 +1,7 @@
 module Abrizer
   # Copies over any WebVTT captions that are beside the original video resource
   # into the destination folder.
-  # TODO: This may only be needed if fMP4 derivatives aren't created since
-  # captions are copied over.
+  # TODO: This may only be needed if fMP4 derivatives aren't created since captions are copied over.
   # TODO: Allow for more than one captions/subtitle file to be copied over.
   class Captions
 

@@ -17,6 +17,9 @@ module Abrizer
   end
 
   class Mp4AdaptationNotFoundError < StandardError
+    def initialize
+      msg = "The fragmented adaptation used to create the progressive MP4 access derivative was not found. You must run `process` before this."
+    end
   end
 
 end

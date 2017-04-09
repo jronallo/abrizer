@@ -21,6 +21,19 @@ module Abrizer
       Abrizer::FfprobeFile.new(filepath, output_dir).run
     end
 
+    desc 'adaptations <filepath> <output_directory>', 'Output which adaptations will be created from input file to a JSON file and output to console'
+    def adaptations(filepath, output_directory=nil)
+      adaptations = Abrizer::AdaptationsFile.new(filepath, output_directory).adaptations
+      puts adaptations
+    end
+
+    desc 'inform <filepath>', 'Display information about the video/audio file'
+    def inform(filepath)
+      informer = FfprobeInformer.new(filepath)
+      puts informer.json_result
+      puts informer
+    end
+
     desc 'abr <filepath> <output_directory>', 'From file create ABR streams, includes processing MP4 adaptations for packaging'
     def abr(filepath, output_dir=nil)
       filepath = File.expand_path filepath
@@ -49,19 +62,6 @@ module Abrizer
       filepath = File.expand_path filepath
       output_dir = File.expand_path output_dir
       Abrizer::ProgressiveVp9.new(filepath, output_dir).create
-    end
-
-    desc 'adaptations <filepath> <output_directory>', 'Output which adaptations will be created from input file to a JSON file and output to console'
-    def adaptations(filepath, output_directory=nil)
-      adaptations = Abrizer::AdaptationsFile.new(filepath, output_directory).adaptations
-      puts adaptations
-    end
-
-    desc 'inform <filepath>', 'Display information about the video/audio file'
-    def inform(filepath)
-      informer = FfprobeInformer.new(filepath)
-      puts informer.json_result
-      puts informer
     end
 
     desc 'package <dash_or_hls> <filepath> <output_directory>', "Package dash or hls from adaptations"
