@@ -66,7 +66,7 @@ From the command line you can see help with: `abrizer`
 To see help for a particular command run: `abrizer help all`
 
 You can run all steps with:
-`abrizer all -i /path/to/video.mp4 -o /path/to/output_directory -u http://localhost:8088/v`
+`abrizer all -i /path/to/video.mp4 -o /path/to/output_directory -u http://localhost:8088/v/output_directory`
 
 Or just create various adaptations needed for repackaging to DASH and HLS:
 `abrizer process -i /path/to/video.mp4 -o /path/to/output_directory`
@@ -88,7 +88,7 @@ If you simply want to run all the steps, you can use the `Abrizer::All` class li
 ```ruby
 video_path = "/path/to/video.mp4"
 output_directory = "/path/to/output_directory"
-base_url = "http://localhost:8088/v"
+base_url = "http://localhost:8088/v/output_directory"
 Abrizer::All.new(video_path, output_directory, base_url).run
 ```
 
@@ -110,7 +110,7 @@ This includes a web server that can be used for local testing of streams and vid
 cd /vagrant
 bundle exec exe/abrizer all \
 -i test/videos/FullHDCinemaCountdown720p-8sec.mp4 \
--o tmp/countdown -u http://localhost:8088/v
+-o tmp/countdown -u http://localhost:8088/v/countdown
 ```
 
 Now visit http://localhost:8088/v/countdown/ to see the files that were created. You can then test any of the videos or streams.

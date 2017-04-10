@@ -8,7 +8,8 @@ module Abrizer
     include ReadAdaptations
 
     # TODO: allow control of items/versions listed on canvas
-    def initialize(output_directory, base_url)
+    def initialize(filepath, output_directory, base_url)
+      @filepath = filepath
       @output_directory = output_directory
       FileUtils.mkdir_p output_directory unless File.exist? output_directory
       @base_url = base_url

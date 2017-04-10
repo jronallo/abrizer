@@ -7,7 +7,8 @@ module Abrizer
     include InformationHelpers
     include ReadAdaptations
 
-    def initialize(output_directory, base_url)
+    def initialize(filepath, output_directory, base_url)
+      @filepath = filepath
       @output_directory = output_directory
       @base_url = base_url
       read_adaptations

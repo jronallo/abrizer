@@ -21,8 +21,8 @@ module Abrizer
       Abrizer::ProgressiveMp4.new(@output_directory).create
       Abrizer::PackageDashBento.new(@output_directory).package
       Abrizer::PackageHlsBento.new(@output_directory).package
-      Abrizer::Canvas.new(@output_directory, @base_url).create
-      Abrizer::Data.new(@output_directory, @base_url).create
+      Abrizer::Canvas.new(nil, @output_directory, @base_url).create
+      Abrizer::Data.new(nil, @output_directory, @base_url).create
       Abrizer::Cleaner.new(@output_directory).clean
     end
 

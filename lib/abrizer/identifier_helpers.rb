@@ -2,7 +2,7 @@ module Abrizer
   module IdentifierHelpers
 
     def media_base_url
-      File.join @base_url, output_directory_basename
+      @base_url
     end
 
     def canvas_id
