@@ -9,6 +9,13 @@
     - "{{ source_dir }}"
     - "{{ build_dir }}"
 
+- name: add nasm repository
+  yum_repository:
+    name: nasm
+    description: nasm repository
+    baseurl: http://www.nasm.us/pub/nasm/stable/linux/
+    gpgcheck: no
+
 - name: stat yasm
   stat: path=/usr/local/bin/yasm
   register: yasm_stat
