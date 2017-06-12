@@ -42,7 +42,7 @@ module Abrizer
     end
 
     def bento_hls_cmd
-      cmd = %Q|mp4hls --output-dir=hls --force --output-single-file  [+language=eng]#{audio_filepath_fragmented} |
+      cmd = %Q|mp4hls --output-dir=hls --force [+language=eng]#{audio_filepath_fragmented} |
       puts cmd
       cmd
     end
