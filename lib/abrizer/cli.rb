@@ -136,6 +136,14 @@ module Abrizer
       Abrizer::Processor.process(filepath, output_dir)
     end
 
+    desc 'audio', 'Process ABR audio only'
+    shared_options :input_required, :output, :url
+    def audio
+      input = expand_path options[:input]
+      output = expand_path options[:output]
+      Abrizer::Audio.new(input, output, options[:url]).run
+    end
+
     desc 'mp4', 'Create a single progressive download version as an MP4 from the next to largest adaptation and audio. The adaptation and audio file must already exist.'
     shared_options :output
     def mp4

@@ -26,6 +26,8 @@ require 'ostruct'
   ffprobe_informer
   ffprobe_file
   processor
+  audio
+  data_audio
   cleaner
   progressive_mp4
   progressive_vp9
