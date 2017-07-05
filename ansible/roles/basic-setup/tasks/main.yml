@@ -7,6 +7,11 @@
   yum:
     name: http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
     state: present
+- name: nasm repo
+  yum_repository:
+    name: nasm
+    description: nasm
+    baseurl: http://www.nasm.us/nasm.repo
 - name: install required packages
   yum:
     pkg: "{{item}}"
