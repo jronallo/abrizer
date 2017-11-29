@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "boxcutter/centos72"
+  # config.vm.box = "boxcutter/centos72"
+  config.vm.box = "geerlingguy/centos7"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -15,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.linked_clone = true
-    vb.memory = 1024
+    vb.memory = 2048
     vb.cpus = 1
   end
 
