@@ -5,19 +5,22 @@
   become_user: root
   remote_user: root
   gather_facts: yes
+  vars:
+    - ansible_user: vagrant
   roles:
     - role: basic-setup
     - role: franklinkim.environment
       environment_config:
         PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin
     - role: apache
-    - role: ffmpeg
-      build_dir: /root/ffmpeg_build
-      source_dir: /root/ffmpeg_sources
+    - role: linuxbrew
+    - role: ffmpeg_linuxbrew
     - role: rvm_io.rvm1-ruby
       rvm1_rubies:
         - 2.3.3
-    - role: rvm-setup
-      users:
-        - vagrant
+    # - role: rvm-setup
+    #   users:
+    #     - vagrant
     - role: bento4
+    - role: audiowaveform
+      ansible_user: vagrant
