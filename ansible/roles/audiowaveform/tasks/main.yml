@@ -1,0 +1,73 @@
+---
+- name: adding RPM fusion repo
+  become: yes
+  command: sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm -y
+
+- name: Install audiowaveform dependencies
+  become: yes  
+  yum:
+    update_cache: yes
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+    - git 
+    - make
+    - cmake
+    - gcc-c++ 
+    - libmad-devel
+    - libid3tag-devel
+    - libsndfile-devel 
+    - gd-devel
+    - boost-devel
+
+- name: getting audiowaveform source code
+  become: no
+  git: 
+    repo: https://github.com/bbc/audiowaveform.git
+    dest: ~/audiowaveform
+    clone: yes
+    depth: 1
+    accept_hostkey: yes
+    update: no
+
+- name: download and unarchive google test library
+  unarchive:
+    src: https://github.com/google/googletest/archive/release-1.8.0.tar.gz
+    dest: "/home/{{ansible_user}}/audiowaveform/"
+    remote_src: yes
+
+- name: symlinc google test executable
+  file:
+    src: "/home/{{ansible_user}}/audiowaveform/googletest-release-1.8.0/googletest"
+    dest: "/home/{{ansible_user}}/audiowaveform/googletest"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    state: link
+
+- name: symlinc google mock executable
+  file:
+    src: "/home/{{ansible_user}}/audiowaveform/googletest-release-1.8.0/googlemock"
+    dest: "/home/{{ansible_user}}/audiowaveform/googlemock"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    state: link
+
+- name: create build directory
+  file: 
+    path: "/home/{{ansible_user}}/audiowaveform/build"
+    state: "directory"
+
+- name: building audiowaveform from source
+  command: "{{item}}"
+  args:
+    chdir: "/home/{{ansible_user}}/audiowaveform/build"
+  with_items:
+    - cmake ..
+    - make
+
+- name: installing audiowaveform
+  become: yes
+  command: sudo make install
+  become_user: "{{ansible_user}}"
+  args:
+    chdir: "/home/{{ansible_user}}/audiowaveform/build"
