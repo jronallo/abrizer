@@ -49,8 +49,8 @@ Some steps must be run after others as they have preconditions in order for subs
   - `mp4`: Process a progressive download MP4 from next to highest quality adaptation.
   - `package dash`: Package DASH (and HLS with fMP4) using output of `process`.
   - `package hls`: Package HLS (TS) using output of `process`.
-- `canvas`:
-- `data`:
+- `canvas`: Non-standard IIIF canvas.
+- `data`: Create the data.json file.
 - `clean`: Clean out the intermediate and log files including MP4 files used for packaging but not required for delivery.
 
 ### Media Sharing
