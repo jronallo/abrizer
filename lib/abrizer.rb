@@ -34,6 +34,7 @@ require 'ostruct'
   progressive_mp3
   sprites
   captions
+  waveform
   canvas
   data
   temporary_poster

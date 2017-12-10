@@ -50,6 +50,7 @@ Some steps must be run after others as they have preconditions in order for subs
   - `package dash`: Package DASH (and HLS with fMP4) using output of `process`.
   - `package hls`: Package HLS (TS) using output of `process`.
 - `canvas`: Non-standard IIIF canvas.
+- `waveform`: Create audio waveform data.
 - `data`: Create the data.json file.
 - `clean`: Clean out the intermediate and log files including MP4 files used for packaging but not required for delivery.
 
