@@ -22,7 +22,7 @@
   name: ffmpeg
 
 - src: https://github.com/NCSU-Libraries-Ansible-Roles/bento4.git
-  version: "v1.0.0"
+  version: "v1.1.0"
   name: bento4
 
 - src: https://github.com/NCSU-Libraries-Ansible-Roles/audiowaveform.git
