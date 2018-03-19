@@ -10,3 +10,5 @@
 /.byebug_history
 /.vagrant
 /ansible/development-playbook.retry
+/ansible/roles/*
+ansible/*.retry
