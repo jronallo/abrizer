@@ -111,6 +111,14 @@ module Abrizer
       Abrizer::Sprites.new(filepath, output_dir).create
     end
 
+    desc 'waveform', 'Create audiowaveform JSON'
+    shared_options :input_required, :output
+    def waveform
+      filepath = expand_path options[:input]
+      output_dir = expand_path options[:output]
+      Abrizer::Waveform.new(filepath, output_dir).create
+    end
+
     desc 'poster', 'Copy over a temporary poster image based on the sprite images'
     shared_options :output
     def poster

@@ -14,7 +14,7 @@ module Abrizer
     end
 
     # TODO: webvtt_input_filepath should look multiple places in case vtt
-    # file(s) already copied over.    
+    # file(s) already copied over.
     def webvtt_input_filepath
       File.join filename_directory, "#{basename}.vtt" if @filename
     end
@@ -131,6 +131,18 @@ module Abrizer
 
     def sprites_filepath
       File.join output_directory, sprites_partial_filepath
+    end
+
+    def waveform_directory
+      File.join output_directory, 'waveforms'
+    end
+
+    def waveform_partial_filepath
+      'waveforms/waveform.json'
+    end
+
+    def waveform_filepath
+      File.join output_directory, waveform_partial_filepath
     end
 
     def first_image_filepath

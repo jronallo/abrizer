@@ -17,9 +17,10 @@
     - role: rvm_io.ruby
       rvm1_rubies:
         - 2.3.3
-    # - role: rvm-setup
-    #   users:
-    #     - vagrant
+      rvm1_bundler_install: True
+      rvm1_user: "{{ansible_user}}"
+      rvm1_rvm_version: 'stable'
+      rvm1_autolib_mode: 3
     - role: bento4
     - role: audiowaveform
       ansible_user: vagrant
