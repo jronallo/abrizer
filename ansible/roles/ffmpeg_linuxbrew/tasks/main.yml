@@ -1,4 +1,0 @@
----
-- name: Install ffmpeg
-  become: no
-  shell: . ~/.bash_profile && brew install ffmpeg --with-x264 --with-x265 --with-fdk-aac --with-libmp3lame --with-opus --with-libogg --with-libvorbis --with-libvpx

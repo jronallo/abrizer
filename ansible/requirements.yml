@@ -1,0 +1,34 @@
+# from galaxy
+- src: franklinkim.environment
+  version: "1.2.0"
+
+- src: rvm_io.ruby
+  version: "v2.0.1"
+
+- src: geerlingguy.redis
+  version: "1.2.0"
+
+# from NCSU-Libraries-Ansible-Roles
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/basic-setup.git
+  version: "v1.1.2"
+  name: basic-setup
+  
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/rvm-setup.git
+  version: "v1.1.0"
+  name: rvm-setup
+
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/ffmpeg.git
+  version: "v1.2.0"
+  name: ffmpeg
+
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/bento4.git
+  version: "v1.0.0"
+  name: bento4
+
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/audiowaveform.git
+  version: "v1.0.0"
+  name: audiowaveform
+
+- src: https://github.com/NCSU-Libraries-Ansible-Roles/apache.git
+  version: "v1.0.0"
+  name: apache

@@ -13,9 +13,8 @@
       environment_config:
         PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin
     - role: apache
-    - role: linuxbrew
-    - role: ffmpeg_linuxbrew
-    - role: rvm_io.rvm1-ruby
+    - role: ffmpeg
+    - role: rvm_io.ruby
       rvm1_rubies:
         - 2.3.3
     # - role: rvm-setup
