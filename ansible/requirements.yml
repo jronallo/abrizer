@@ -10,7 +10,7 @@
 
 # from NCSU-Libraries-Ansible-Roles
 - src: https://github.com/NCSU-Libraries-Ansible-Roles/basic-setup.git
-  version: "v1.1.2"
+  version: "v1.2.0"
   name: basic-setup
   
 - src: https://github.com/NCSU-Libraries-Ansible-Roles/rvm-setup.git
