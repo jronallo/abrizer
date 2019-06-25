@@ -9,12 +9,12 @@
     - ansible_user: vagrant
   roles:
     - role: basic-setup
-    - role: franklinkim.environment
+    - role: weareinteractive.environment
       environment_config:
         PATH: /usr/local/bento4/bin:/usr/bin:/usr/local/bin
     - role: apache
     - role: ffmpeg
-    - role: rvm_io.ruby
+    - role: rvm.ruby
       rvm1_rubies:
         - 2.3.3
       rvm1_bundler_install: True
